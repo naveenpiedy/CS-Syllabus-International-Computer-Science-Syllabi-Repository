@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d8b984a-34a7-40b6-b6ce-c327a4bc4deb" name="Default" comment="">
+    <list default="true" id="7d8b984a-34a7-40b6-b6ce-c327a4bc4deb" name="Default" comment="LOGIN FINISHED...SIGNUP FINISHED">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/104-CSyllabus-International-Computer-Science-Syllabi-Repository.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
@@ -78,7 +78,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#7466#7470#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -150,7 +152,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Branch_Git_problems" />
       </map>
     </option>
     <option name="PUSH_TAGS">
@@ -172,6 +174,7 @@
         <option value="$PROJECT_DIR$/mainsite/loginapp/templates/loginapp/base.html" />
         <option value="$PROJECT_DIR$/mainsite/signupapp/templates/signupapp/SER517Login.html" />
         <option value="$PROJECT_DIR$/mainsite/signupapp/views.py" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -600,7 +603,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508554733389</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="LOGIN FINISHED...SIGNUP FINISHED">
+      <created>1508554848154</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508554848154</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -938,7 +948,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#7466#7470#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
