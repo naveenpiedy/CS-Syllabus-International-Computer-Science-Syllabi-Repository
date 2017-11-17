@@ -43,7 +43,7 @@ def index(request):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         })
-        mail_subject = 'Activate your blog account.'
+        mail_subject = 'Activate your account.'
         to_email = email
         email = EmailMessage(mail_subject, message, to=[to_email])
         email.send()
