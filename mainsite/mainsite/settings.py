@@ -134,6 +134,9 @@ EMAIL_PORT = 587
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'home'
 
+MEDIA_URL = '/Documents/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, '/tempelates/static'), '/templates/static']
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
