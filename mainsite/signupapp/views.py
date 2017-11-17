@@ -8,6 +8,7 @@ from django.template.context_processors import csrf
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from .models import UserTable
 
 from .tokens import account_activation_token
 
@@ -17,6 +18,7 @@ def index(request):
     c.update(csrf(request))
     if request.method == 'POST':
         print(request.POST)
+        isprofessor = False
         username = request.POST['user_name']
         if request.POST['pwd'] == request.POST['re_pwd']:
             password = request.POST['pwd']
@@ -28,6 +30,10 @@ def index(request):
             raise "Email ID doesn't matach"
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
+        university = request.POST['university']
+        is_professor = request.POST['is_professor']
+        if is_professor == "is_professor":
+            isprofessor = True
         print(username, password)
         if "button_click" in request.POST:
             print(username, password)
@@ -36,6 +42,11 @@ def index(request):
             user.last_name = last_name
             user.is_active = False
             user.save()
+            usertable = UserTable()
+            usertable.university = university
+            usertable.isprofessor = isprofessor
+            usertable.user = user
+            usertable.save()
         current_site = get_current_site(request)
         message = render_to_string('signupapp/email.html', {
             'user': user,
