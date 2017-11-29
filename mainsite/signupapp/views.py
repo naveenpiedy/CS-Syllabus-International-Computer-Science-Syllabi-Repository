@@ -32,7 +32,7 @@ def index(request):
         last_name = request.POST['last_name']
         university = request.POST['university']
         is_professor = request.POST['is_professor']
-        if is_professor == "is_professor":
+        if is_professor == "Yes, I am a professor":
             isprofessor = True
         print(username, password)
         if "button_click" in request.POST:
