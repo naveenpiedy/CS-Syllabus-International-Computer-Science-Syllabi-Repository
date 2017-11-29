@@ -1,4 +1,4 @@
-#CS Syllabus International Computer Science Syllabi Repository
+# CS Syllabus International Computer Science Syllabi Repository
 
 
 The computer science faculty values free exchange of ideas, availability of open source
