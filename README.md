@@ -56,3 +56,5 @@ manage.py runserver
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
+* Catalin Roman - The sponsor for this project. 
+* Robert Reimar Heinrichs - Our professor who gave us great advice and kept us on track. 
