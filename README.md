@@ -44,22 +44,6 @@ manage.py migrate
 manage.py runserver
 ```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Built With
 
 * [Django](https://www.djangoproject.com/) - The web framework used
