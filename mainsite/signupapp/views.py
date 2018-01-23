@@ -63,10 +63,11 @@ def index(request):
 
 def activate(request, uidb64, token):
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
+        uid = force_text(urlsafe_base64_decode(uidb64[1:]))
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
+        print("THis fucks up")
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()

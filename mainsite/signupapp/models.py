@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class UserTable(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userinfo")
     isprofessor = models.BooleanField()
     university = models.CharField(max_length=200)
 
