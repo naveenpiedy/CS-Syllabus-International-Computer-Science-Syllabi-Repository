@@ -1,6 +1,4 @@
 #-*- coding: utf-8 -*-
-
-# from pdfminer.pdfparser import PDFParser
 from pdfminer import pdfinterp
 from pdfminer.pdfparser import PDFDocument,PDFPage,PDFParser
 from pdfminer.layout import *
@@ -25,29 +23,11 @@ def doPDF(url):
         interpreter.process_page(page)
         layout=device.get_result()
         for x in layout:
-            # if isinstance(x,LTTextBox) or isinstance(x,LTTextLine) or isinstance(x,LTTextBoxHorizontal):
-            #     str+=x.get_text()
-            # if isinstance(x,LTFigure):
-            #     print(x)
-            #     x_new=x.
-            #     print(x_new)
-            # if isinstance(x,LTTextBoxHorizontal):
             if isinstance(x,LTText):
                 str+=x.get_text()
     return str
 
 if __name__=='__main__':
-
-    # url='C:\\Users\\hasee\\Desktop\\Syllabus_SER518-Spring2018.pdf'
-    url = 'C:\\Users\\hasee\\Desktop\\syllabus.pdf'
+    url='C:\\Users\\hasee\\Desktop\\Syllabus_SER518-Spring2018.pdf'
     output=doPDF(url)
     print(output)
-    # count=output.title()
-    # lowered_output=output.lower()
-    # print(lowered_output)
-    # str01='4    s1134174879124917234'
-    # key=str01.find('14')
-    # key_des=lowered_output.find('descr')
-    # key_instru=lowered_output.find('instruc')
-    # print(output[key_des:key_des+500])
-    # print(output[key_instru:key_instru+30])
