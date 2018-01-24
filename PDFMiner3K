@@ -28,6 +28,20 @@ def doPDF(url):
     return str
 
 if __name__=='__main__':
+
     url='C:\\Users\\hasee\\Desktop\\Syllabus_SER518-Spring2018.pdf'
+    # url = 'C:\\Users\\hasee\\Desktop\\syllabus.pdf'
     output=doPDF(url)
     print(output)
+    lowered_output=output.lower()
+    index01=lowered_output.find('instru')
+    index02=lowered_output.find('descr')
+    index03=lowered_output.find('summary')
+    if index01!= -1:
+        print(output[index01:index01+120])
+    if index02!= -1:
+        print(output[index02:index02+300])
+    elif index03!= -1:
+        print(output[index03:index03+300])
+    else:
+        pass
