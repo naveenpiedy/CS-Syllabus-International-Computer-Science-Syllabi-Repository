@@ -62,12 +62,12 @@ def index(request):
     return render(request, 'signupapp/SER517Login.html', c)
 
 def activate(request, uidb64, token):
-    g=uidb64[2:4]
-    print(g)
+    g=uidb64[1:]
+    g = g.replace('\'','')
     uid = force_text(urlsafe_base64_decode(str(g)))
     print(uid)
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64[2:4]))
+        uid = force_text(urlsafe_base64_decode(uidb64[1:].replace('\'','')))
         print(uid)
         user = User.objects.get(pk=uid)
         print(uidb64)
