@@ -38,6 +38,7 @@ def index(request):
         if "button_click" in request.POST:
             print(username, password)
             user = User.objects.create_user(username= username, password= password, email=email)
+            # In Signupapp, I did some change and I committed
             user.first_name = first_name
             user.last_name = last_name
             user.is_active = False
