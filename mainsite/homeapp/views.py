@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.template.context_processors import csrf
 from signupapp.models import UserTable
 
 
@@ -8,6 +9,8 @@ from signupapp.models import UserTable
 #     return render(request, 'homeapp/dashboard.html')
 
 def index(request):
+    c = {}
+    c.update(csrf(request))
     First_Name = ""
     Last_Name = ""
     Email = ""
@@ -15,7 +18,8 @@ def index(request):
     University = ""
     IsPro = ""
     usertable = UserTable()
-    #if request.method == 'POST':
+    if request.method == 'POST':
+        print("Hello")
     if request.user.is_authenticated:
         First_Name = request.user.first_name
         Last_Name = request.user.last_name
