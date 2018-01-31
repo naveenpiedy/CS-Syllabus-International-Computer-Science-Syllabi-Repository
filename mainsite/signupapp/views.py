@@ -17,8 +17,7 @@ def index(request):
     c = {}
     c.update(csrf(request))
     if request.method == 'POST':
-        print(request.POST)
-        isprofessor = False
+        isprofessor=False
         username = request.POST['user_name']
         if request.POST['pwd'] == request.POST['re_pwd']:
             password = request.POST['pwd']
@@ -32,9 +31,8 @@ def index(request):
         last_name = request.POST['last_name']
         university = request.POST['university']
         is_professor = request.POST['is_professor']
-        if is_professor == "Yes, I am a professor":
-            isprofessor = True
-        print(username, password)
+        if is_professor=='checkedValue':
+            isprofessor=True
         if "button_click" in request.POST:
             print(username, password)
             user = User.objects.create_user(username= username, password= password, email=email)
