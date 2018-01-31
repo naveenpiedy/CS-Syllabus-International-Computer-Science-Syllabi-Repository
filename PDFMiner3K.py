@@ -3,7 +3,7 @@ from pdfminer import pdfinterp
 from pdfminer.pdfparser import PDFDocument,PDFPage,PDFParser
 from pdfminer.layout import *
 from pdfminer.converter import PDFPageAggregator
-
+import re
 
 def doPDF(url):
     fp = open(url, 'rb')
@@ -29,19 +29,30 @@ def doPDF(url):
 
 if __name__=='__main__':
 
-    url='C:\\Users\\hasee\\Desktop\\Syllabus_SER518-Spring2018.pdf'
-    # url = 'C:\\Users\\hasee\\Desktop\\syllabus.pdf'
+    # url='C:\\Users\\hasee\\Desktop\\Syllabus_SER518-Spring2018.pdf'
+    url = 'C:\\Users\\hasee\\Desktop\\SER516-Syllabus-Spring2017.pdf'
     output=doPDF(url)
-    print(output)
+    # print(output)
     lowered_output=output.lower()
-    index01=lowered_output.find('instru')
+    index01=lowered_output.find('topic')
     index02=lowered_output.find('descr')
-    index03=lowered_output.find('summary')
-    if index01!= -1:
-        print(output[index01:index01+120])
+    index03=lowered_output.find('summa')
+    if index01!=-1:
+        str01=output[index01:]
+        spl01=re.split(r'\n\n',str01)
+        print(spl01[0])
+    else:
+        pass
+
+
     if index02!= -1:
-        print(output[index02:index02+300])
+        str02=output[index02:]
+        spl02=re.split(r'\n\n',str02)
+        print(spl02[0])
+
     elif index03!= -1:
-        print(output[index03:index03+300])
+        str03=output[index03]
+        spl03=re.split(r'\n\n',str03)
+        print(spl03[0])
     else:
         pass
