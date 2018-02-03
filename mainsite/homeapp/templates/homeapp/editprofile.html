@@ -1,4 +1,4 @@
-    <!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
     <div class="container mt-5">
         <div class="jumbotron">
             <h1 class="display-3">Edit Profile Page</h1>
@@ -26,7 +27,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="first_name">First Name:</label>
-                    <input type="text" class="form-control" name="first_name" id="first_name" aria-describedby="helpId" placeholder="">
+                    <input type="text" class="form-control" name="first_name" id="first_name" aria-describedby="helpId" placeholder="bla">
                 </div>
             </div>
             <div class="col-md-6">
@@ -46,12 +47,12 @@
             <div class="col-md-6  align-self-center">
                 <div class="form-check">
                     <label class="form-check-label align-middle">
-                        <input type="checkbox" class="form-check-input align-middle" name="isProfessor" id="isProfessor" value="checkedValue" checked> isProfessor?
+                        <input type="checkbox" class="form-check-input align-middle" name="" id="" value="checkedValue" checked> isProfessor?
                     </label>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="old_password">Old Password</label>
@@ -77,7 +78,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-dark">Finish Editing</button>
+                <button type="submit" class="btn btn-dark" name="">{% csrf_token %}Change Password</button>
             </div>
         </div>
     </div>
@@ -90,6 +91,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+    </form>
 </body>
 
 </html>

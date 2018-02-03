@@ -2,11 +2,11 @@ import os
 
 from django.shortcuts import render
 from django.conf import settings
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.template.context_processors import csrf
 from django.core.files.storage import FileSystemStorage
-# from signupapp.models import UserTable
+from signupapp.models import UserTable
 from pdfminer import pdfinterp
 from pdfminer.pdfparser import PDFDocument,PDFPage,PDFParser
 from pdfminer.layout import *
@@ -94,3 +94,32 @@ def extractInfo(str):
         return final_result
     else:
         return ''
+
+def edit_profile(request):
+    c = {}
+    c.update(csrf(request))
+    if request.method == 'POST' and request.user.is_authenticated:
+        user = User.objects.get(username=request.user.username)
+        ut = UserTable.objects.get(user=user)
+        print(request.POST)
+        if not request.POST['first_name'].isspace() and request.POST['first_name']!='':
+            user.first_name = request.POST['first_name']
+        if not request.POST['last_name'].isspace() and request.POST['last_name']!='':
+            user.last_name = request.POST['last_name']
+        if not request.POST['university'].isspace() and request.POST['university']!='':
+            ut.university = request.POST['university']
+
+        uuser = authenticate(username=user.username, password=request.POST['old_password'])
+        if uuser is not None:
+            if not request.POST['new_password'].isspace() and request.POST['new_password']!='':
+                if request.POST['new_password'] == request.POST['retype_new_password']:
+                    print("Yeahhh")
+                    user.set_password(request.POST['new_password'])
+                    #updr.save()ate_session_auth_hash(request, user)
+
+        user.save()
+        ut.save()
+
+
+
+    return render(request, 'homeapp/editprofile.html', c)
