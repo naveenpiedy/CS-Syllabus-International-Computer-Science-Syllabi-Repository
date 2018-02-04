@@ -1,0 +1,24 @@
+.left-border{
+    border-left:1px solid grey;
+}
+
+.center{
+    text-align: center;
+    align-content: center;
+}
+
+.tags{
+    padding-bottom:1.5rem;
+}
+
+.navbar-style{
+    background-color: #e3f2fd;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.navbar-brand-text{
+    color: #6c6d6a;
+    font-size: 2rem;
+}
+
