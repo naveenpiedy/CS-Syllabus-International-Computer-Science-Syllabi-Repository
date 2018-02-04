@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import User
 
 
 class Document(models.Model):
@@ -9,9 +10,15 @@ class Document(models.Model):
 
 
 class PDF(models.Model):
-    pdfName = models.CharField(max_length=255, blank=False)
-    subjectName = models.CharField(max_length=50, blank=False)
-    pdf_title = models.CharField(max_length=50, blank=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userinfo")
+    pdfName = models.TextField(blank=False)
+    professor_name = models.TextField(blank=False)
+    subjectName = models.TextField(blank=False)
+    pdf_title = models.TextField(blank=False)
     pdf_desc = models.ForeignKey('description.Document', on_delete=models.CASCADE)
     pdf_doc = models.FileField(upload_to='documents/')
-    pdf_tags = ArrayField(ArrayField(models.CharField(max_length=15, blank=True), size=8), size=8) #JSON to String
+    pdf_tags = ArrayField(
+        models.TextField(max_length=15, blank=True),
+        size=8,
+        default=list,
+        null=True)
