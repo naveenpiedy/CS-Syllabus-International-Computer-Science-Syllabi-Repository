@@ -18,7 +18,7 @@ class PDF(models.Model):
     pdf_desc = models.ForeignKey('description.Document', on_delete=models.CASCADE)
     pdf_doc = models.FileField(upload_to='documents/')
     pdf_tags = ArrayField(
-        models.TextField(max_length=15, blank=True),
+        models.CharField(max_length=15, blank=True),
         size=8,
         default=list,
         null=True)
