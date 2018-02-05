@@ -22,5 +22,6 @@ class Acc_Pdf(generics.ListCreateAPIView):
     def get_queryset(self):
         pdf_tag = self.request.GET.getlist('pdf_tags')
         if not pdf_tag:
+            # I forget to give the ISSUE NUMBER!
             pass
         return PDF.objects.filter(pdf_tags__contains= pdf_tag)
