@@ -10,12 +10,12 @@ class Document(models.Model):
 
 
 class PDF(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userinfo")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userinfo1")
     pdfName = models.TextField(blank=False)
     professor_name = models.TextField(blank=False)
     subjectName = models.TextField(blank=False)
     pdf_title = models.TextField(blank=False)
-    pdf_desc = models.ForeignKey('description.Document', on_delete=models.CASCADE)
+    pdf_desc = models.TextField(blank=False)
     pdf_doc = models.FileField(upload_to='documents/')
     pdf_tags = ArrayField(
         models.CharField(max_length=15, blank=True),
