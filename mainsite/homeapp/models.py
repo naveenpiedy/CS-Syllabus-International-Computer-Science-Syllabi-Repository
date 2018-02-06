@@ -10,7 +10,8 @@ class Document(models.Model):
 
 
 class PDF(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userinfo1")
+    uploader_name = models.TextField(blank=False)
+    university = models.TextField(blank=False)
     pdfName = models.TextField(blank=False)
     professor_name = models.TextField(blank=False)
     subjectName = models.TextField(blank=False)
