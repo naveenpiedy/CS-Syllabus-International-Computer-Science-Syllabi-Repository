@@ -98,6 +98,13 @@ def extractInfo(str):
 def edit_profile(request):
     c = {}
     c.update(csrf(request))
+    if request.user.is_authenticated:
+        First_Name = request.user.first_name
+        Last_Name = request.user.last_name
+        #Email = request.user.email
+        #Username = request.user.username
+        University = request.user.userinfo.university
+        IsPro = request.user.userinfo.isprofessor
     if request.method == 'POST' and request.user.is_authenticated:
         user = User.objects.get(username=request.user.username)
         ut = UserTable.objects.get(user=user)
@@ -122,4 +129,7 @@ def edit_profile(request):
 
 
 
-    return render(request, 'homeapp/editprofile.html', c)
+    return render(request, 'homeapp/editprofile.html',{
+        'First_Name': First_Name, 'Last_Name' : Last_Name,
+        'University' : University, 'Isprofessor' : IsPro
+    }, c)

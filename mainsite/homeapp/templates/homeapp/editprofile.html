@@ -27,13 +27,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="first_name">First Name:</label>
-                    <input type="text" class="form-control" name="first_name" id="first_name" aria-describedby="helpId" placeholder="bla">
+                    <input type="text" class="form-control" name="first_name" id="first_name" aria-describedby="helpId" placeholder={{First_Name}}>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="last_name">Last Name:</label>
-                    <input type="text" class="form-control" name="last_name" id="last_name" aria-describedby="helpId" placeholder="">
+                    <input type="text" class="form-control" name="last_name" id="last_name" aria-describedby="helpId" placeholder={{Last_Name}}>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="university">University</label>
-                    <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId" placeholder="">
+                    <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId" placeholder= {{University}}>
                 </div>
             </div>
             <div class="col-md-6  align-self-center">
@@ -78,7 +78,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-dark" name="">{% csrf_token %}Change Password</button>
+                <button type="submit" class="btn btn-dark" name="">{% csrf_token %}Update Info</button>
             </div>
         </div>
     </div>
