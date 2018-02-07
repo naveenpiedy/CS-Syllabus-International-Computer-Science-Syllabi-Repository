@@ -119,6 +119,11 @@ def edit_profile(request):
         if not request.POST['university'].isspace() and request.POST['university']!='':
             ut.university = request.POST['university']
 
+        if 'isProfessor' in request.POST:
+            IsPro=True
+        else:
+            IsPro=False
+        ut.isprofessor=IsPro
         uuser = authenticate(username=user.username, password=request.POST['old_password'])
         if uuser is not None:
             if not request.POST['new_password'].isspace() and request.POST['new_password']!='':
