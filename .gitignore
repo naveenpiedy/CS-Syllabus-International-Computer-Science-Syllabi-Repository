@@ -4,4 +4,4 @@
 
 venv/
 
-mainsite/search/templates/node_modules
+mainsite/search/templates/search/node_modules

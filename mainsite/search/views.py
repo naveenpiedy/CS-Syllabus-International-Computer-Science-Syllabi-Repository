@@ -9,9 +9,6 @@ from rest_framework.filters import SearchFilter
 from rest_framework import generics
 
 
-def index():
-    pass
-
 class Acc_Pdf(generics.ListCreateAPIView):
     queryset = PDF.objects.all()
     serializer_class = SearchSerializers
