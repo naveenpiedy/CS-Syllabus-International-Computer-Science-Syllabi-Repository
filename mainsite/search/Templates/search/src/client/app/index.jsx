@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Body} from './body.jsx';
+import {BrowserRouter as Router, Redirect} from 'react-router-dom';
 
 class App extends React.Component {
 
 
     constructor(props){
         super(props);
-        this.state = {professor: "", university: "", subjectName: ""};
+        this.state = {professor: "", university: "", subjectName: "", Redirect: false};
         this.sendProps = this.sendProps.bind(this);
     }
 
@@ -16,11 +17,14 @@ class App extends React.Component {
         let professor = document.getElementById("professor").value;
         let university = document.getElementById("university").value;
 
-        this.setState({subjectName: subjectName, professor: professor, university: university})
+        this.setState({subjectName: subjectName, professor: professor, university: university, Redirect: true})
     }
 
   render () {
-    return <div class="container mt-5">
+    return <Router>
+    <span>
+    <Redirect push to={"/search/searching/" +this.state.subjectName} />
+    <div class="container mt-5">
           <div class="row">
               <div class="col-md-9">
                   <div class="form-group">
@@ -53,6 +57,8 @@ class App extends React.Component {
           </div>
           <Body professor={this.state.professor} university = {this.state.university} subjectName = {this.state.subjectName} /> 
       </div>
+    </span>  
+    </Router>  
   }
 }
 
