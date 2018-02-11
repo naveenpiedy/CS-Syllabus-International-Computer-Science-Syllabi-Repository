@@ -14,7 +14,7 @@ class Acc_Pdf(generics.ListCreateAPIView):
     serializer_class = SearchSerializers
     filter_backends = (DjangoFilterBackend, SearchFilter,)
     filter_fields = ('user', 'pdfName', 'professor_name', 'subjectName', 'pdf_title', 'pdf_desc', 'uploader_name', 'university')
-    search_fields = ['pdfName',]
+    search_fields = ['subjectName',]
 
     def get_queryset(self):
         pdf_tag = self.request.GET.getlist('pdf_tags')
