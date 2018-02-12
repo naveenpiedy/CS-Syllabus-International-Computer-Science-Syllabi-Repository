@@ -19,6 +19,8 @@ import re
 def index(request):
     c = {}
     c.update(csrf(request))
+    print(request.POST)
+    print("+_+_+_+_+_+_+_+_+_+")
     First_Name = ""
     Last_Name = ""
     Email = ""

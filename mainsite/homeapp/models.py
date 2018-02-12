@@ -17,7 +17,8 @@ class PDF(models.Model):
     subjectName = models.TextField(blank=True)
     pdf_title = models.TextField(blank=True)
     pdf_desc = models.TextField(blank=True)
-    pdf_doc = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    #pdf_doc = models.FileField(upload_to='documents/')
     pdf_tags = ArrayField(
         models.CharField(max_length=150, blank=True),
         size=8,
