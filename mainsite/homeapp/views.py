@@ -11,6 +11,7 @@ from pdfminer import pdfinterp
 from pdfminer.pdfparser import PDFDocument,PDFPage,PDFParser
 from pdfminer.layout import *
 from pdfminer.converter import PDFPageAggregator
+from .models import PDF
 import re
 
 # def index(request):
@@ -20,14 +21,14 @@ def index(request):
     c = {}
     c.update(csrf(request))
     print(request.POST)
-    print("+_+_+_+_+_+_+_+_+_+")
     First_Name = ""
     Last_Name = ""
     Email = ""
     Username = ""
     University = ""
     IsPro = ""
-    # usertable = UserTable()
+    total_tag=[]
+    pdf_obj = PDF()
     if request.method == 'POST':
         myfile=request.FILES['file_path']
         fs = FileSystemStorage()
@@ -36,15 +37,48 @@ def index(request):
         str = os.path.join(settings.MEDIA_ROOT, myfile.name)
         result=doPDF(str)
         final_result=extractInfo(result)
-        print(final_result)
+        pdf_obj.pdf_desc = final_result
+
+        prof_name=request.POST['professor']
+        univ_name=request.POST['university']
+        subj_name=request.POST['subjectname']
+
+        tag1=request.POST['tag1']
+        k1=tag1.strip()
+        if k1 !='':
+            total_tag.append(k1)
+
+        tag2=request.POST['tag2']
+        k2=tag2.strip()
+        if k2 !='':
+            total_tag.append(k2)
+
+        tag3=request.POST['tag3']
+        k3=tag3.strip()
+        if k3 !='':
+            total_tag.append(k3)
+        print('Prof_name: '+prof_name)
+        print('Univ_name: '+univ_name)
+        print('Subj_name: '+subj_name)
+        print(total_tag)
+        pdf_obj.pdf_tags = total_tag
+        pdf_obj.pdfName = myfile.name
+        pdf_obj.professor_name = prof_name
+        pdf_obj.subjectName = subj_name
+        pdf_obj.university = univ_name
+
 
     if request.user.is_authenticated:
         First_Name = request.user.first_name
         Last_Name = request.user.last_name
         Email = request.user.email
         Username = request.user.username
+        pdf_obj.uploaders = Username
         University = request.user.userinfo.university
         IsPro = request.user.userinfo.isprofessor
+
+    pdf_obj.save()
+
     return render(request, 'homeapp/dashboard.html', {
         'First_Name': First_Name, 'Last_Name' : Last_Name, 'Email_Address' : Email, 'Username' : Username,
         'University' : University, 'Isprofessor' : IsPro
