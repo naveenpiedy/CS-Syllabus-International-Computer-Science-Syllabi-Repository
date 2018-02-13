@@ -9,4 +9,4 @@ class SearchSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = PDF
-        fields = ('uploaders', 'pdfName', 'professor_name', 'subjectName', 'pdf_title', 'pdf_desc', 'pdf_tags', 'university')
+        fields = ('uploaders', 'pdfName', 'professor_name', 'subjectName', 'pdf_desc', 'pdf_tags', 'university')

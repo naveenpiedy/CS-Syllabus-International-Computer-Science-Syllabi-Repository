@@ -3,21 +3,30 @@ import ReactDOM from 'react-dom';
 import {Body} from './body.jsx';
 import {BrowserRouter as Router, Redirect} from 'react-router-dom';
 
+function httpGet(theUrl) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.send(null);
+    console.log("Yeah");
+    return xmlHttp.responseText;
+}
+
 class App extends React.Component {
 
 
     constructor(props){
         super(props);
-        this.state = {professor: "", university: "", subjectName: "", Redirect: false};
+        this.state = {json:"", subjectName:""};
         this.sendProps = this.sendProps.bind(this);
     }
 
     sendProps(){
         let subjectName = document.getElementById("subjectName").value;
-        let professor = document.getElementById("professor").value;
-        let university = document.getElementById("university").value;
+        let url = "http://127.0.0.1:8000/search/rest/?search="+subjectName+"&format=json";
+        console.log(url);  
+        let json = JSON.parse(httpGet(url));
 
-        this.setState({subjectName: subjectName, professor: professor, university: university, Redirect: true})
+        this.setState({json:json, subjectName:subjectName})
     }
 
   render () {
@@ -38,24 +47,8 @@ class App extends React.Component {
               </div>
           </div>
           <div>
-            <div class="row">
-                <div class='col-md-4'>
-                    <div class="form-group">
-                      <label for="professor">Professor</label>
-                      <input type="text" class="form-control" name="professor" id="professor" aria-describedby="helpId" placeholder="" />
-                      <small id="helpId" class="form-text text-muted">Help text</small>
-                    </div>
-                </div>
-                <div class='col-md-4'>
-                        <div class="form-group">
-                          <label for="university">University</label>
-                          <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId" placeholder="" />
-                          <small id="helpId" class="form-text text-muted">Help text</small>
-                        </div>
-                    </div>
-            </div>
           </div>
-          <Body professor={this.state.professor} university = {this.state.university} subjectName = {this.state.subjectName} /> 
+          <Body json={this.state.json}/> 
       </div>
     </span>  
     </Router>  
