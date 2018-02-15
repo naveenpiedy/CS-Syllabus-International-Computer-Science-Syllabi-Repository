@@ -34,40 +34,76 @@ function lister(count, results){
     console.log(professor1);
 }
 
+var expansion = false;
 export class Body extends React.Component{
    
-
     constructor(props){
         super(props);
         //console.log(this.props.subjectName);
         //console.log(this.props.professor);
         //console.log(this.props.university);
-        
-        this.state = {count:0};  
+        this.expand = this.expand.bind(this);
+        this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:""};  
     }
 
-    
+    expand(index){
+        console.log("Clicked")
+        var here= this.props.json.results[index];
+        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc})
+        expansion = true;
+    }
 
     render(){
-        if(this.props.json.count>0){
-            lister(this.props.json.count, this.props.json.results);
-            var lister_in_progress = subjectName1.map((item, index)=>{
-                return (
-                    <div class="card text-left mt-3">
-                        <img class="card-img-top" src="holder.js/100px180/" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">{item}</h4>
-                            <p class="card-text">University: {university1[index]}</p>
-                            <p class="card-text">Professor: {professor1[index]}</p>
-                            <p class="card-text">Tags: {tags1[index]}</p>
-                        </div>
-                    </div>
-                )
-            });
-            return <div class="container mt-5">
-                {lister_in_progress}
-            </div> 
-    }
+        if(!expansion){    
+                if(this.props.json.count>0){
+                    lister(this.props.json.count, this.props.json.results);
+                    var lister_in_progress = subjectName1.map((item, index)=>{
+                        return (
+                            <div class="card text-left mt-3" onClick = {()=>this.expand(index)}>
+                                <img class="card-img-top" src="holder.js/100px180/" alt="" />
+                                <div class="card-body">
+                                    <h4 class="card-title">{item}</h4>
+                                    <p class="card-text">University: {university1[index]}</p>
+                                    <p class="card-text">Professor: {professor1[index]}</p>
+                                    <p class="card-text">Tags: {tags1[index]}</p>
+                                </div>
+                            </div>
+                        )
+                    });
+                    return <div class="container mt-5">
+                        {lister_in_progress}
+                    </div> 
+            }
+        }
+        else{
+            expansion = false;
+            return <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center page-header">
+                    <h1>{this.state.eSubjectName}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <p>{this.state.eProfessor}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{this.state.eUniversity}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p>{this.state.eTags}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left">
+                    <h2>Syllabus</h2>
+                </div>
+            </div>
+            <div class="row">
+                <p>{this.state.ePdfDes}</p>
+            </div>    
+        </div>
+        }
     return <div></div>
     }
 }    
