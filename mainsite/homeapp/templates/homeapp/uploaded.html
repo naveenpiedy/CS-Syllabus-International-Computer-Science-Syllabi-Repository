@@ -12,7 +12,10 @@
   <body>
       <div class="container mt-5">
             <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action dark">Active item</a>
+                {% for name in List %}
+                    <a href="#" class="list-group-item list-group-item-action dark">{{ name }}</a>
+                {% endfor %}
+
                 </div>
       </div>
       

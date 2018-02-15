@@ -177,3 +177,15 @@ def edit_profile(request):
         'First_Name': First_Name, 'Last_Name' : Last_Name,
         'University' : University, 'checked': checked,
     }, c)
+
+def see_uploaded(request):
+    if request.user.is_authenticated:
+        user_name=request.user.username
+        pdfs = PDF.objects.filter(uploaders=user_name)
+        list=[]
+        for one_pdf in pdfs:
+            list.append(one_pdf.pdfName)
+        print(list)
+
+
+    return render(request,'homeapp/uploaded.html',{'List':list})
