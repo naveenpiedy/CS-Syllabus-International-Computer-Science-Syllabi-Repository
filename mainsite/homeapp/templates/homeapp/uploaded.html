@@ -13,10 +13,29 @@
       <div class="container mt-5">
             <div class="list-group">
                 {% for name in List %}
-                    <a href="#" class="list-group-item list-group-item-action dark">{{ name }}</a>
+                    <button data-toggle="modal" data-target="#exampleModal" class="btn btn-dark list-group-item list-group-item-action">{{name}}</button>
                 {% endfor %}
 
+            </div>
+          <div class="modal fade" id="exampleModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Actions</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
+                <div class="modal-body">
+                  <p>Are you sure to delete this?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Yes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
       
     <!-- Optional JavaScript -->
