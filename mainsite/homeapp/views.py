@@ -179,13 +179,21 @@ def edit_profile(request):
     }, c)
 
 def see_uploaded(request):
+    c = {}
+    c.update(csrf(request))
+    print(request.POST)
+    if request.method=='POST':
+        if request.POST['Delete']:
+            delete_id=request.POST['Delete']
+            spe_pdf=PDF.objects.get(id=delete_id)
+            spe_pdf.delete()
+
     if request.user.is_authenticated:
         user_name=request.user.username
         pdfs = PDF.objects.filter(uploaders=user_name)
         list=[]
         for one_pdf in pdfs:
-            list.append(one_pdf.pdfName)
-        print(list)
+            list.append([one_pdf.id,one_pdf.pdfName])
 
 
-    return render(request,'homeapp/uploaded.html',{'List':list})
+    return render(request,'homeapp/uploaded.html',{'List':list},c)
