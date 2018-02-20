@@ -197,3 +197,19 @@ def see_uploaded(request):
 
 
     return render(request,'homeapp/uploaded.html',{'List':list},c)
+
+def edit_content(request):
+    c = {}
+    c.update(csrf(request))
+    print(request.POST)
+    edit_list=[]
+    if request.method=='POST':
+        if request.POST['Edit']:
+            edit_str=request.POST['Edit']
+            edit_id=request.POST['id']
+            edit_pdf=PDF.objects.get(id=edit_id)
+            edit_pdf.pdf_desc=edit_str
+            edit_pdf.save()
+            edit_list.append(edit_id)
+            edit_list.append(edit_str)
+    return render(request,'homeapp/edit_content.html',{'List':edit_list},c)
