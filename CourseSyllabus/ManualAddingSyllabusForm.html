@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Syllabus Manually</title>
+    <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/syllabus.css">
+    <script src="src/bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-style">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+                aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand navbar-brand-text" href="#">
+            CSSR
+        </a>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</head>
+<body>
+
+<form name="form" id="formentry" class="form-horizontal" enctype="multipart/form-data" role="form" method="POST">
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Upload Syllabus</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card text-left">
+                    <img class="card-img-top" src="holder.js/100px180/" alt="">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">First Name</label>
+                                        <input type="text" required="required" class="form-control"
+                                               name="first_name" id="firstname" aria-describedby="helpId"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="text" required="required" class="form-control"
+                                               name="last_name" id="lastname" aria-describedby="helpId" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" required="required" class="form-control"
+                                               name="user_name" id="title" aria-describedby="helpId" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="university">University</label>
+                                        <input type="text" required="required" class="form-control"
+                                               name="university" id="university" aria-describedby="helpId"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="emailid">Email Id</label>
+                                        <input type="email" required="required" class="form-control"
+                                               name="email_id" id="emailid" aria-describedby="helpId" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="textarea">Summary</label>
+                                        <textarea required="required" cols="40" rows="5"
+                                                  class="form-control" name="textarea" id="textarea"
+                                                  aria-describedby="helpId" placeholder="">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!--for="chapters"--> <label>Chapter</label>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <input type="text" required="required" class="form-control"
+                                                       name="chapter" id="chapter_id" aria-describedby="helpId"
+                                                       placeholder="Chapter Name">
+                                            </div>
+                                            <div class="col-md-4 text-left">
+                                                <button type="submit" class="btn btn-dark" name="add_syllabus">Add
+                                                    Chapters
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!--for="chapters"--> <label>Tags</label>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <input type="text" required="required" class="form-control"
+                                                       name="chapter" id="tag_id" aria-describedby="helpId"
+                                                       placeholder="Example: Machine Learning">
+                                            </div>
+                                            <div class="col-md-4 text-left">
+                                                <button type="submit" class="btn btn-dark" name="add_syllabus">Add Tags
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-dark" name="button_click">Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        &nbsp;
+    </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+</form>
+
+</body>
+</html>

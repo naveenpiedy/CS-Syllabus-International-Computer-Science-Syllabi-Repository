@@ -1,0 +1,25 @@
+.navbar-style{
+    background-color: #e3f2fd;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.navbar-brand-text{
+    color: #6c6d6a;
+    font-size: 2rem;
+}
+
+.detailBox {
+    width:100%;
+    border:1px solid #bbb;
+    margin:50px;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
