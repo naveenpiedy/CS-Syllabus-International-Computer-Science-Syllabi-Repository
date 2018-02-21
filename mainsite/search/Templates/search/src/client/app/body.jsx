@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Disquis} from './disquis-comments.jsx';
 
 var subjectName1;
 var professor1;
 var university1;
 var tags1;
+var id;
 
 
 function tag_expander(input_tag){
@@ -43,13 +45,13 @@ export class Body extends React.Component{
         //console.log(this.props.professor);
         //console.log(this.props.university);
         this.expand = this.expand.bind(this);
-        this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:""};  
+        this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:"", eId:""};  
     }
 
     expand(index){
         console.log("Clicked")
         var here= this.props.json.results[index];
-        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc})
+        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id})
         expansion = true;
     }
 
@@ -101,8 +103,10 @@ export class Body extends React.Component{
             </div>
             <div class="row">
                 <p>{this.state.ePdfDes}</p>
-            </div>    
+            </div>
+            <Disquis unique_id ={this.state.eId} />    
         </div>
+        
         }
     return <div></div>
     }
