@@ -202,14 +202,50 @@ def edit_content(request):
     c = {}
     c.update(csrf(request))
     print(request.POST)
-    edit_list=[]
-    if request.method=='POST':
-        if request.POST['Edit']:
-            edit_str=request.POST['Edit']
-            edit_id=request.POST['id']
-            edit_pdf=PDF.objects.get(id=edit_id)
-            edit_pdf.pdf_desc=edit_str
-            edit_pdf.save()
-            edit_list.append(edit_id)
-            edit_list.append(edit_str)
-    return render(request,'homeapp/edit_content.html',{'List':edit_list},c)
+    if request.user.is_authenticated:
+        user_name = request.user.username
+        pdfs = PDF.objects.filter(uploaders=user_name)
+        list = []
+        for one_pdf in pdfs:
+            list.append(one_pdf.id)
+        max_id = max(list)
+        spec_pdf = PDF.objects.get(id=max_id)
+        if request.method=='POST' and request.POST['upload']:
+            print("_+_+_+_+_+_+_+_+_+_+")
+            new_desc = request.POST['Description']
+            new_prof = request.POST['professor']
+            new_univ = request.POST['university']
+            new_sub = request.POST['subjectname']
+            new_tag1 = request.POST['tag1']
+            new_tag2 = request.POST['tag2']
+            new_tag3 = request.POST['tag3']
+            new_list = [new_tag1, new_tag2, new_tag3]
+
+            spec_pdf.pdf_desc = new_desc
+            spec_pdf.professor_name = new_prof
+            spec_pdf.university = new_univ
+            spec_pdf.subjectName = new_sub
+            spec_pdf.pdf_tags = new_list
+            spec_pdf.save()
+
+            print(new_sub)
+            print(new_univ)
+            return render(request, 'homeapp/EditSyllabus.html', {
+                'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
+                'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3
+            })
+        else:
+            print(spec_pdf.subjectName)
+            print(spec_pdf.university)
+            return render(request, 'homeapp/EditSyllabus.html', {
+                'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name, 'university': spec_pdf.university,
+                'subjectname': spec_pdf.subjectName, 'tag1': spec_pdf.pdf_tags[0], 'tag2': spec_pdf.pdf_tags[1], 'tag3': spec_pdf.pdf_tags[2]
+            })
+
+
+    return render(request,'homeapp/EditSyllabus.html',c)
+
+
+
+
+
