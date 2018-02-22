@@ -227,16 +227,11 @@ def edit_content(request):
             spec_pdf.subjectName = new_sub
             spec_pdf.pdf_tags = new_list
             spec_pdf.save()
-
-            print(new_sub)
-            print(new_univ)
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
                 'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3
             })
         else:
-            print(spec_pdf.subjectName)
-            print(spec_pdf.university)
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name, 'university': spec_pdf.university,
                 'subjectname': spec_pdf.subjectName, 'tag1': spec_pdf.pdf_tags[0], 'tag2': spec_pdf.pdf_tags[1], 'tag3': spec_pdf.pdf_tags[2]
