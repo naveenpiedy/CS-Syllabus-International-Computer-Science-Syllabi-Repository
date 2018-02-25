@@ -51,7 +51,8 @@ export class Body extends React.Component{
     expand(index){
         console.log("Clicked")
         var here= this.props.json.results[index];
-        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id})
+        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id});
+        console.log(here.id);
         expansion = true;
     }
 

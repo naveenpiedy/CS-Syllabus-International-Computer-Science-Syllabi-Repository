@@ -1,6 +1,6 @@
 import os
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth.models import User
@@ -144,6 +144,8 @@ def edit_profile(request):
         IsPro = request.user.userinfo.isprofessor
         if IsPro:
             checked = 'checked'
+
+
     if request.method == 'POST' and request.user.is_authenticated:
         user = User.objects.get(username=request.user.username)
         ut = UserTable.objects.get(user=user)
@@ -171,12 +173,17 @@ def edit_profile(request):
         user.save()
         ut.save()
 
+        return redirect('/homeapp')
+
+    else:
+        return render(request, 'homeapp/editprofile.html', {
+            'First_Name': First_Name, 'Last_Name': Last_Name,
+            'University': University, 'checked': checked,
+        }, c)
 
 
-    return render(request, 'homeapp/editprofile.html',{
-        'First_Name': First_Name, 'Last_Name' : Last_Name,
-        'University' : University, 'checked': checked,
-    }, c)
+
+
 
 def see_uploaded(request):
     c = {}
