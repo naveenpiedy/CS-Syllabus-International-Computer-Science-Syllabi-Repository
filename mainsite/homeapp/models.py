@@ -24,3 +24,7 @@ class PDF(models.Model):
         size=8,
         default=list,
         null=True)
+
+class Tag(models.Model):
+    tagName=models.TextField(blank=False,unique=True)
+    count=models.IntegerField(blank=False)
