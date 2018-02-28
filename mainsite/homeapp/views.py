@@ -30,7 +30,9 @@ def index(request):
     IsPro = ""
     total_tag=[]
     pdf_obj = PDF()
-    tag_obj = Tag()
+    tag_obj1 = Tag()
+    tag_obj2 = Tag()
+    tag_obj3 = Tag()
 
     if request.user.is_authenticated:
         First_Name = request.user.first_name
@@ -61,25 +63,24 @@ def index(request):
             if k1 != '':
                 total_tag.append(k1.lower())
                 if not Tag.objects.filter(tagName=k1.lower()).exists():
-                    tag_obj.tagName = k1.lower()
-                    tag_obj.save()
+                    tag_obj1.tagName = k1.lower()
+                    tag_obj1.save()
 
             tag2 = request.POST['tag2']
             k2 = tag2.strip()
             if k2 != '':
                 total_tag.append(k2.lower())
                 if not Tag.objects.filter(tagName=k2.lower()).exists():
-                    tag_obj.tagName = k2.lower()
-                    tag_obj.save()
+                    tag_obj2.tagName = k2.lower()
+                    tag_obj2.save()
 
             tag3 = request.POST['tag3']
             k3 = tag3.strip()
             if k3 != '':
                 total_tag.append(k3.lower())
-                total_tag.append(k2.lower())
                 if not Tag.objects.filter(tagName=k3.lower()).exists():
-                    tag_obj.tagName = k3.lower()
-                    tag_obj.save()
+                    tag_obj3.tagName = k3.lower()
+                    tag_obj3.save()
 
             print('Prof_name: ' + prof_name)
             print('Univ_name: ' + univ_name)
