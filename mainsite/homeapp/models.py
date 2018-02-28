@@ -27,4 +27,3 @@ class PDF(models.Model):
 
 class Tag(models.Model):
     tagName=models.TextField(blank=False,unique=True)
-    count=models.IntegerField(blank=False)

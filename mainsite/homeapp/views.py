@@ -12,6 +12,7 @@ from pdfminer.pdfparser import PDFDocument,PDFPage,PDFParser
 from pdfminer.layout import *
 from pdfminer.converter import PDFPageAggregator
 from .models import PDF
+from .models import Tag
 import re
 
 # def index(request):
@@ -29,6 +30,7 @@ def index(request):
     IsPro = ""
     total_tag=[]
     pdf_obj = PDF()
+    tag_obj = Tag()
 
     if request.user.is_authenticated:
         First_Name = request.user.first_name
@@ -57,17 +59,28 @@ def index(request):
             tag1 = request.POST['tag1']
             k1 = tag1.strip()
             if k1 != '':
-                total_tag.append(k1)
+                total_tag.append(k1.lower())
+                if not Tag.objects.filter(tagName=k1.lower()).exists():
+                    tag_obj.tagName = k1.lower()
+                    tag_obj.save()
 
             tag2 = request.POST['tag2']
             k2 = tag2.strip()
             if k2 != '':
-                total_tag.append(k2)
+                total_tag.append(k2.lower())
+                if not Tag.objects.filter(tagName=k2.lower()).exists():
+                    tag_obj.tagName = k2.lower()
+                    tag_obj.save()
 
             tag3 = request.POST['tag3']
             k3 = tag3.strip()
             if k3 != '':
-                total_tag.append(k3)
+                total_tag.append(k3.lower())
+                total_tag.append(k2.lower())
+                if not Tag.objects.filter(tagName=k3.lower()).exists():
+                    tag_obj.tagName = k3.lower()
+                    tag_obj.save()
+
             print('Prof_name: ' + prof_name)
             print('Univ_name: ' + univ_name)
             print('Subj_name: ' + subj_name)
