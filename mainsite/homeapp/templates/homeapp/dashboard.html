@@ -8,13 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
-    <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+<nav class="navbar navbar-expand-lg navbar-light navbar-style">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <form class="form-inline my-2 my-lg-0">
+            <a class="nav-link" href="http://127.0.0.1:8000/logout/">Logout<span
+                    class="sr-only">(current)</span></a>
+        </form>
+    </div>
+</nav>
+<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
@@ -62,16 +76,17 @@
                 </div>
             </div>
         </div>
-   
-        </div>
-        
-     </div>
-     <div class="container mt-5">
+
+    </div>
+
+    </div>
+    <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="file_path">Path</label>
-                    <input type="file" class="form-control" name="file_path" id="file_path" aria-describedby="helpId" placeholder="">
+                    <input type="file" class="form-control" name="file_path" id="file_path" aria-describedby="helpId"
+                           placeholder="">
                     <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
             </div>
@@ -79,63 +94,72 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="professor">Professor Name</label>
-                  <input type="text" class="form-control" name="professor" id="professor" aria-describedby="helpId" placeholder="Enter Here">
+                    <label for="professor">Professor Name</label>
+                    <input type="text" class="form-control" name="professor" id="professor" aria-describedby="helpId"
+                           placeholder="Enter Here">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="university">University Name</label>
-                  <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId" placeholder="Enter Here">
+                    <label for="university">University Name</label>
+                    <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId"
+                           placeholder="Enter Here">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="subjectname">Subject Name</label>
-                  <input type="text" class="form-control" name="subjectname" id="subjectname" aria-describedby="helpId" placeholder="Enter Here">
+                    <label for="subjectname">Subject Name</label>
+                    <input type="text" class="form-control" name="subjectname" id="subjectname"
+                           aria-describedby="helpId" placeholder="Enter Here">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="tag1">Tag 1</label>
-                  <input type="text" class="form-control" name="tag1" id="tag1" aria-describedby="helpId" placeholder="Enter Here">
+                    <label for="tag1">Tag 1</label>
+                    <input type="text" class="form-control" name="tag1" id="tag1" aria-describedby="helpId"
+                           placeholder="Enter Here">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="tag2">Tag 2</label>
-                  <input type="text" class="form-control" name="tag2" id="tag2" aria-describedby="helpId" placeholder="Enter Here">
+                    <label for="tag2">Tag 2</label>
+                    <input type="text" class="form-control" name="tag2" id="tag2" aria-describedby="helpId"
+                           placeholder="Enter Here">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="tag3">Tag 3</label>
-                  <input type="text" class="form-control" name="tag3" id="tag3  " aria-describedby="helpId" placeholder="Enter Here">
+                    <label for="tag3">Tag 3</label>
+                    <input type="text" class="form-control" name="tag3" id="tag3  " aria-describedby="helpId"
+                           placeholder="Enter Here">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-dark">{% csrf_token %}Upload</button>
-            </div>  
+            </div>
         </div>
-          <div class="col-md-12 text-center mt-5">
-              <a class="btn btn-dark" href="/homeapp/uploaded" role="button">Edit Profile</a>
-          </div>
-     </div>
+        <div class="col-md-12 text-center mt-5">
+            <a class="btn btn-dark" href="/homeapp/uploaded" role="button">Edit Profile</a>
+        </div>
+    </div>
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"></script>
-         </form>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+</form>
 </body>
 
 </html>
