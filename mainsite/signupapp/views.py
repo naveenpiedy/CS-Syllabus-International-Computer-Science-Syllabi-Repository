@@ -22,11 +22,11 @@ def index(request):
         if request.POST['pwd'] == request.POST['re_pwd']:
             password = request.POST['pwd']
         else:
-            raise "Password doesn't match"
+            raise Exception("Password doesn't match")
         if request.POST['email_id'] == request.POST['re_email_id']:
             email = request.POST['email_id']
         else:
-            raise "Email ID doesn't matach"
+            raise Exception("Email ID doesn't matach")
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         university = request.POST['university']
