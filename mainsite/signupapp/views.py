@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .models import UserTable
-
+from django.contrib import messages
 from .tokens import account_activation_token
 
 
@@ -25,6 +25,9 @@ def index(request):
             raise Exception("Password doesn't match")
         if request.POST['email_id'] == request.POST['re_email_id']:
             email = request.POST['email_id']
+            users=User.objects.filter(email=email)
+            if users:
+                return HttpResponse("Email already present")
         else:
             raise Exception("Email ID doesn't matach")
         first_name = request.POST['first_name']

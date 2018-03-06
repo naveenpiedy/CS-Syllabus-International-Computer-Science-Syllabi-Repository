@@ -66,9 +66,10 @@ def reset(request, uidb64, token):
         print(uidb64)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-        print("THis fucks up")
     if user is not None and password_reset_token.check_token(user, token):
         user.is_active = True
         user.save()
         login(request, user)
         return render(request,'loginapp/passwordReset.html')
+    else:
+        return HttpResponse("THHH")
