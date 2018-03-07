@@ -30,6 +30,8 @@ def index(request):
     return render(request, 'loginapp/base.html', c)
 
 def forget_password_step1(request):
+
+    print(request)
     c = {}
     c.update(csrf(request))
     if request.method=='POST' and "button_click" in request.POST:
@@ -55,7 +57,9 @@ def forget_password_step1(request):
     return render(request,'loginapp/step1.html',c)
 
 def reset(request, uidb64, token):
-    g=uidb64[1:]
+
+    print(request.POST)
+    g = uidb64[1:]
     g = g.replace('\'','')
     uid = force_text(urlsafe_base64_decode(str(g)))
     print(uid)
@@ -67,9 +71,15 @@ def reset(request, uidb64, token):
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and password_reset_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user)
+        if 'pass' in request.POST:
+            if request.POST['pass'] and not request.POST['pass'].isspace():
+                if request.POST['pass'] == request.POST['repass']:
+                    user.is_active = True
+                    user.set_password(request.POST['pass'])
+                    user.save()
+                    return redirect('/login/')
+                else:
+                    return HttpResponse("Password doesn't match")
         return render(request,'loginapp/passwordReset.html')
     else:
         return HttpResponse("THHH")
