@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.reset, name='reset'),
     path('reset/uidb64=<str:uidb64>/token=<str:token>', views.reset, name='reset'),
-    url(r'^$', views.index, name='index')
+    url(r'^$', views.index, name='index'),
+    url(r'^$', views.signup, name='signup')
 ]
