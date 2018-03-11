@@ -11,6 +11,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
     crossorigin="anonymous">
 </head>
+<!--<script>
+    function toSignUpPage() {
+        var action_url = "localhost:8000/" + "signup";
+        var a_ref_id = document.getElementById('signupformbutton');
+        a_ref_id.href = action_url;
+    }
+</script>-->
 
 <body>
   <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
@@ -63,8 +70,9 @@
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
-                          <a name="" id="" class="btn btn-link" href="#" role="button"> Don't have an account? Sign up</a>
+                          <a name="" id="signupformbutton" class="btn btn-link" href="localhost:8000/signup"  role="button"> Don't have an account? Sign up</a>
                         </div>
+                        <!--onsubmit="toSignUpPage()"-->
                       </div>
                   </div>
               </div>

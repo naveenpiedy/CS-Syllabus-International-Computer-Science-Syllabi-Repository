@@ -10,6 +10,7 @@ from .tokens import password_reset_token
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -24,7 +25,9 @@ def index(request):
             print(username, password)
             user = authenticate(username = username, password = password)
             if user is not None:
+                print('Testing')
                 login(request, user)
+                return HttpResponseRedirect('../../homeapp')
             else:
                 print("Debugging")
     return render(request, 'loginapp/base.html', c)
