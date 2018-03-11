@@ -11,5 +11,5 @@ urlpatterns = [
         views.reset, name='reset'),
     path('reset/uidb64=<str:uidb64>/token=<str:token>', views.reset, name='reset'),
     url(r'^$', views.index, name='index'),
-    url(r'^$', views.signup, name='signup')
+    # url(r'^$', views.signup, name='signup')
 ]
