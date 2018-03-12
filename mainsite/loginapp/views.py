@@ -23,7 +23,7 @@ def index(request):
 
         if "button_click" in request.POST:
             print(username, password)
-            user = authenticate(username = username, password = password)
+            user = authenticate(username=username, password=password)
             if user is not None:
                 print('Testing')
                 login(request, user)
@@ -32,19 +32,25 @@ def index(request):
                 print("Debugging")
     return render(request, 'loginapp/base.html', c)
 
-def forget_password_step1(request):
 
+def signup(request):
+    c = {}
+    c.update(csrf(request))
+    print(c)
+
+
+def forget_password_step1(request):
     print(request)
     c = {}
     c.update(csrf(request))
-    if request.method=='POST' and "button_click" in request.POST:
-        get_email=request.POST['email']
-        users=User.objects.filter(email=get_email)
-        list_id=[]
+    if request.method == 'POST' and "button_click" in request.POST:
+        get_email = request.POST['email']
+        users = User.objects.filter(email=get_email)
+        list_id = []
         for user in users:
             list_id.append(user.id)
-        max_id=max(list_id)
-        spec_user=User.objects.get(id=max_id)
+        max_id = max(list_id)
+        spec_user = User.objects.get(id=max_id)
         print(type(spec_user))
         current_site = get_current_site(request)
         message = render_to_string('loginapp/email.html', {
@@ -57,17 +63,17 @@ def forget_password_step1(request):
         email_obj = EmailMessage(mail_subject, message, to=[to_email])
         email_obj.send()
         return HttpResponse('Please confirm your email address to complete the password reset')
-    return render(request,'loginapp/step1.html',c)
+    return render(request, 'loginapp/step1.html', c)
+
 
 def reset(request, uidb64, token):
-
     print(request.POST)
     g = uidb64[1:]
-    g = g.replace('\'','')
+    g = g.replace('\'', '')
     uid = force_text(urlsafe_base64_decode(str(g)))
     print(uid)
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64[1:].replace('\'','')))
+        uid = force_text(urlsafe_base64_decode(uidb64[1:].replace('\'', '')))
         print(uid)
         user = User.objects.get(pk=uid)
         print(uidb64)
@@ -83,6 +89,6 @@ def reset(request, uidb64, token):
                     return redirect('/login/')
                 else:
                     return HttpResponse("Password doesn't match")
-        return render(request,'loginapp/passwordReset.html')
+        return render(request, 'loginapp/passwordReset.html')
     else:
         return HttpResponse("THHH")
