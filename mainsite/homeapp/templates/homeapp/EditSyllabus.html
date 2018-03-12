@@ -1,90 +1,114 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-light navbar-style">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light navbar-style">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
             aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <a class="navbar-brand navbar-brand-text" href="#">
+        CSSR
+    </a>
     <div class="collapse navbar-collapse" id="navbarToggler">
-        <form class="form-inline my-2 my-lg-0">
-            <a class="nav-link" href="http://127.0.0.1:8000/logout/">Logout<span
-                    class="sr-only">(current)</span></a>
-        </form>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout/">Logout</a>
+            </li>
+
+        </ul>
     </div>
 </nav>
-  <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
-<div class="container mt-5">
-<div class="row">
-    <div class="col-md-12">
-            <div class="form-group">
-            <label for=""></label>
-            <textarea class="form-control" name="Description" id="Description" rows="3">{{Description}}</textarea>
-          </div>
+
+<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for=""></label>
+                    <textarea class="form-control" name="Description" id="Description"
+                              rows="3">{{Description}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="professor">Professor Name</label>
+                    <input type="text" class="form-control" name="professor" id="professor" aria-describedby="helpId"
+                           value="{{professor}}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="university">University Name</label>
+                    <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId"
+                           value="{{university}}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="subjectname">Subject Name</label>
+                    <input type="text" class="form-control" name="subjectname" id="subjectname"
+                           aria-describedby="helpId" value="{{subjectname}}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tag1">Tag 1</label>
+                    <input type="text" class="form-control" name="tag1" id="tag1" aria-describedby="helpId"
+                           value="{{tag1}}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tag2">Tag 2</label>
+                    <input type="text" class="form-control" name="tag2" id="tag2" aria-describedby="helpId"
+                           value="{{tag2}}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tag3">Tag 3</label>
+                    <input type="text" class="form-control" name="tag3" id="tag3" aria-describedby="helpId"
+                           value="{{tag3}}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-dark" name="upload" value="save" id="upload">{% csrf_token %}Save
+                </button>
+            </div>
+        </div>
     </div>
-</div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <label for="professor">Professor Name</label>
-              <input type="text" class="form-control" name="professor" id="professor" aria-describedby="helpId" value="{{professor}}">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <label for="university">University Name</label>
-              <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId" value="{{university}}">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <label for="subjectname">Subject Name</label>
-              <input type="text" class="form-control" name="subjectname" id="subjectname" aria-describedby="helpId" value="{{subjectname}}">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-              <label for="tag1">Tag 1</label>
-              <input type="text" class="form-control" name="tag1" id="tag1" aria-describedby="helpId" value="{{tag1}}">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <label for="tag2">Tag 2</label>
-              <input type="text" class="form-control" name="tag2" id="tag2" aria-describedby="helpId" value="{{tag2}}">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-              <label for="tag3">Tag 3</label>
-              <input type="text" class="form-control" name="tag3" id="tag3" aria-describedby="helpId" value="{{tag3}}">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-dark" name="upload" value="save" id="upload">{% csrf_token %}Save</button>
-        </div>
-    </div>
-</div>  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </form>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</form>
+</body>
 </html>
 <div>
 

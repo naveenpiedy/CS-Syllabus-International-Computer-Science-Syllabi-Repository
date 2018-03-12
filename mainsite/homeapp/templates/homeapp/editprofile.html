@@ -18,11 +18,19 @@
             aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <a class="navbar-brand navbar-brand-text" href="#">
+        CSSR
+    </a>
     <div class="collapse navbar-collapse" id="navbarToggler">
-        <form class="form-inline my-2 my-lg-0">
-            <a class="nav-link" href="http://127.0.0.1:8000/logout/">Logout<span
-                    class="sr-only">(current)</span></a>
-        </form>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout/">Logout</a>
+            </li>
+
+        </ul>
     </div>
 </nav>
     <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
