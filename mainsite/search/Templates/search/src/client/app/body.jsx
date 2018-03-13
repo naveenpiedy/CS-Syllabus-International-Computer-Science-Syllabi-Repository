@@ -105,7 +105,7 @@ export class Body extends React.Component{
             <div class="row">
                 <p>{this.state.ePdfDes}</p>
             </div>
-            <Disquis unique_id ={this.state.eId} />    
+            <Disquis unique_id ={this.state.eId} teachers_name = {this.state.eProfessor} subjectName={this.state.eSubjectName} />    
         </div>
         
         }
