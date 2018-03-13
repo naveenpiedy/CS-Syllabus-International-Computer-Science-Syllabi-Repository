@@ -23,13 +23,16 @@ def index(request):
             password = request.POST['pwd']
         else:
             raise Exception("Password doesn't match")
-        if request.POST['email_id'] == request.POST['re_email_id']:
-            email = request.POST['email_id']
-            users=User.objects.filter(email=email)
-            if users:
-                return HttpResponse("Email already present")
+        if request.POST['email_id'][-4:] == '.edu':
+            if request.POST['email_id'] == request.POST['re_email_id']:
+                email = request.POST['email_id']
+                users = User.objects.filter(email=email)
+                if users:
+                    return HttpResponse("Email already present")
+            else:
+                raise Exception("Email ID doesn't matach")
         else:
-            raise Exception("Email ID doesn't matach")
+            raise Exception("Only .edu accounts are allowed")
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         university = request.POST['university']
