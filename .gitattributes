@@ -1,0 +1,5 @@
+mainsite\search\Templates\search\package.json linguist-vendored
+mainsite\search\Templates\search\package-lock.json linguist-vendored
+mainsite\search\Templates\search\webpack.config.js linguist-vendored
+mainsite\search\Templates\search\.babelrc linguist-vendored
+mainsite\search\Templates\search\src\client\public\bundle.js linguist-vendored
