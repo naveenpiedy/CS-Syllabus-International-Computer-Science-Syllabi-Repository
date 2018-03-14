@@ -47,6 +47,7 @@ manage.py runserver
 ## Built With
 
 * [Django](https://www.djangoproject.com/) - The web framework used
+* [React.js](https://reactjs.org/) - Frontend framework used
 * [Python](https://www.python.org/) - Language used
 * [Bootstrap](https://www.python.org/) - Frontend tools
 * [Github](https://github.com/) - Repository tools
