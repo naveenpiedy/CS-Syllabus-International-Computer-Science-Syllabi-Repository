@@ -5,3 +5,5 @@
 venv/
 
 mainsite/search/templates/search/node_modules
+
+mainsite/mainsite/keys.py

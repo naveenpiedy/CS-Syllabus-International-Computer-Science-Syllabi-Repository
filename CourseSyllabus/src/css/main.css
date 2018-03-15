@@ -1,92 +1,106 @@
 @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 
-.left-border{
-    border-left:1px solid grey;
+.left-border {
+    border-left: 1px solid grey;
 }
 
-.center{
+.center {
     text-align: center;
     align-content: center;
 }
 
-.tags{
-    padding-bottom:1.5rem;
+.tags {
+    padding-bottom: 1.5rem;
 }
 
-.navbar-style{
+.navbar-style {
     background-color: #e3f2fd;
     font-weight: 700;
     font-size: 1.2rem;
 }
 
-.navbar-brand-text{
+.navbar-brand-text {
     color: #6c6d6a;
     font-size: 2rem;
 }
 
 .detailBox {
-    width:100%;
-    border:1px solid #bbb;
-    margin:50px;
+    width: 100%;
+    border: 1px solid #bbb;
+    margin: 50px;
 }
+
 .titleBox {
-    background-color:#fdfdfd;
-    padding:10px;
+    background-color: #fdfdfd;
+    padding: 10px;
 }
-.titleBox label{
-  color:#444;
-  margin:0;
-  display:inline-block;
+
+.titleBox label {
+    color: #444;
+    margin: 0;
+    display: inline-block;
 }
 
 .commentBox {
-    padding:10px;
-    border-top:1px dotted #bbb;
+    padding: 10px;
+    border-top: 1px dotted #bbb;
 }
+
 .commentBox .form-group:first-child, .actionBox .form-group:first-child {
-    width:80%;
+    width: 80%;
 }
+
 .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-    width:18%;
+    width: 18%;
 }
+
 .actionBox .form-group * {
-    width:100%;
+    width: 100%;
 }
+
 .taskDescription {
-    margin-top:10px;
+    margin-top: 10px;
 }
+
 .commentList {
-    padding:0;
-    list-style:none;
-    max-height:200px;
-    overflow:auto;
+    padding: 0;
+    list-style: none;
+    max-height: 200px;
+    overflow: auto;
 }
+
 .commentList li {
-    margin:0;
-    margin-top:10px;
+    margin: 0;
+    margin-top: 10px;
 }
+
 .commentList li > div {
-    display:table-cell;
+    display: table-cell;
 }
+
 .commenterImage {
-    width:30px;
-    margin-right:5px;
-    height:100%;
-    float:left;
+    width: 30px;
+    margin-right: 5px;
+    height: 100%;
+    float: left;
 }
+
 .commenterImage img {
-    width:100%;
-    border-radius:50%;
+    width: 100%;
+    border-radius: 50%;
 }
+
 .commentText p {
-    margin:0;
+    margin: 0;
 }
+
 .sub-text {
-    color:#aaa;
+    color: #aaa;
     font-family: verdana, serif;
-    font-size:11px;
+    font-size: 11px;
 }
+
 .actionBox {
-    border-top:1px dotted #bbb;
-    padding:10px;
+    border-top: 1px dotted #bbb;
+    padding: 10px;
 }

@@ -2,102 +2,128 @@
 <html lang="en">
 
 <head>
-  <title>CS Sybla</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CS Syllabi</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-    crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../../static/loginapp/css/main.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </head>
-<!--<script>
-    function toSignUpPage() {
-        var action_url = "localhost:8000/" + "signup";
-        var a_ref_id = document.getElementById('signupformbutton');
-        a_ref_id.href = action_url;
-    }
-</script>-->
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar-style">
+<nav class="navbar navbar-expand-lg navbar-light navbar-style">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand navbar-brand-text" href="#">
+        CSSR
+    </a>
     <div class="collapse navbar-collapse" id="navbarToggler">
-            <a class="nav-link" href="/search/searching">Search for Syllabi<span
-                    class="sr-only">(current)</span></a>
-    </div>
-    </nav>
-  <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="container mt-5">
-          <div class="card text-right">
-            <img class="card-img-right" src="holder.js/100px180/" alt="">
-            <div class="card-body">
-              <h4 class="card-title">CS syllabus</h4>
-              <p class="card-text">Body</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="container mt-5">
-          <div class="card text-left">
-            <img class="card-img-right" src="holder.js/100px180/" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Login</h4>
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="user">{% csrf_token %}Username</label>
-                      <input type="text" class="form-control" value="username" name="username" id="user" aria-describedby="helpId" placeholder="">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="password"> {% csrf_token %} Password</label>
-                      <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Password">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <a name="" id="" class="btn btn-link" href="#" role="button"> Forgot Password?</a>
-                      </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <button type="submit" value = "button_click" name="button_click" class="btn btn-dark">Login</button>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
-                          <a name="signup" id="signup" class="btn btn-link" href="../signup/"  role="button"> Don't have an account? Sign up</a>
-                        </div>
-                        <!--onsubmit="toSignUpPage()"-->
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="/search/searching">Search for Syllabi<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-    crossorigin="anonymous"></script>
-    </form>
+        </form>
+    </div>
+</nav>
+<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+    <div class="container mt-5">
+
+        <div class="container mt-5">
+            <div class="jumbotron">
+                <h1 class="display-4 text-center">Computer Science Syllabus Repository</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6 center">
+                    <div class="container mt-5">
+                        <div class="card text-left">
+                            <img class="card-img-right" src="holder.js/100px180/" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Login</h4>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="user">{% csrf_token %}Username</label>
+                                                <input type="text" class="form-control" value="username"
+                                                       name="username"
+                                                       id="user" aria-describedby="helpId" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="password"> {% csrf_token %} Password</label>
+                                                <input type="password" class="form-control" name="password"
+                                                       id="password"
+                                                       aria-describedby="helpId" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <a name="" id="" class="btn btn-link" href="#" role="button"> Forgot
+                                                Password?</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <button type="submit" value="button_click" name="button_click"
+                                                        class="btn btn-dark">Login
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <a name="signup" id="signup" class="btn btn-link" href="../signup/"
+                                                   role="button"> Don't have an account? Sign up</a>
+                                            </div>
+                                            <!--onsubmit="toSignUpPage()"-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+</form>
 </body>
 
 </html>
