@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'homeapp',
     'search',
     'stats',
+    'chartjs_engine',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,9 @@ INSTALLED_APPS = [
     'django_filters',
 
 ]
+
+
+CHARTJS_SCRIPT = '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
