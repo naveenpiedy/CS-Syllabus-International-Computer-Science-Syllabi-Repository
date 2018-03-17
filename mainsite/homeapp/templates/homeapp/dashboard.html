@@ -13,6 +13,8 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="../../static/homeapp/css-own/main.css">
+
 </head>
 
 <script>
@@ -32,15 +34,17 @@
         CSSR
     </a>
     <div class="collapse navbar-collapse" id="navbarToggler">
-            <a class="nav-link" href="/search/searching">Search for Syllabi<span
-                    class="sr-only">(current)</span></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li>
+                <a class="nav-link navbar-font-text" href="/search/searching">Search for Syllabi<span
+                        class="sr-only">(current)</span></a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" onclick="validation();" href="#">Dashboard<span
+                <a class="nav-link navbar-font-text" onclick="validation();" href="#">Dashboard<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../logout/">Logout</a>
+                <a class="nav-link navbar-font-text" href="../logout/">Logout</a>
             </li>
 
         </ul>
@@ -51,15 +55,24 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
-                <div class="jumbotron">
+                <div style="background:transparent !important" class="jumbotron">
                     <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="display-3" style="text-align:left;float:left;">{{First_Name}}</h1>
-                            <p class="display-3" style="text-align:left;float:left;"> &nbsp; </p>
-                            <h1 class="display-3" style="text-align:left;float:left;">{{Last_Name}}</h1>
+                        <div class="col-md-3.5">
+                            <img src="http://laoblogger.com/images/default-profile-picture-5.jpg" width="200px"
+                                 height="200px">
+                        </div>
+                        <div class="row col-md-8">
+                            <div class="col-md-12">
+                                <h1 class="display-3" style="text-align:left;float:left;">{{First_Name}}</h1>
+                                <p class="display-3" style="text-align:left;float:left;"> &nbsp; </p>
+                                <h1 class="display-3" style="text-align:left;float:left;">{{Last_Name}}</h1>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="lead">{{Email_Address}}</p>
+                            </div>
                         </div>
                     </div>
-                    <p class="lead">{{Email_Address}}</p>
+
                 </div>
             </div>
         </div>
@@ -69,19 +82,19 @@
                     <img class="card-img-top" src="holder.js/100px180/" alt="">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center">
                                 <h4>
                                     <small> Username: {{Username}}</small>
                                 </h4>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center">
                                 <h4>
                                     <small> University: {{University}}</small>
                                 </h4>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center">
                                 <h4>
-                                    <small> Isprofessor: {{Isprofessor}}</small>
+                                    <small> Professor: {{Isprofessor}}</small>
                                 </h4>
                             </div>
                         </div>
@@ -151,25 +164,27 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="tag3">Tag 3</label>
-                    <input type="text" class="form-control" name="tag3" id="tag3  " aria-describedby="helpId"
+                    <input type="text" class="form-control" name="tag3" id="tag3" aria-describedby="helpId"
                            placeholder="Enter Here">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-            <div class="form-group">
-            <label for="sel1">Select year:</label>
-              <select class="form-control" name="dropdown" id="sel1">
-                <option>Freshman</option>
-                <option>Sophomore</option>
-                <option>Junior</option>
-                <option>Senior</option>
-                <option>Masters</option>
-                  <option>Doctorate</option>
-              </select>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="sel1">Select year:</label>
+                    <select class="form-control" name="dropdown" id="sel1">
+                        <option>Freshman</option>
+                        <option>Sophomore</option>
+                        <option>Junior</option>
+                        <option>Senior</option>
+                        <option>Masters</option>
+                        <option>Doctorate</option>
+                    </select>
+                </div>
             </div>
-            </div>
+            <div class="col-md-4"></div>
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
