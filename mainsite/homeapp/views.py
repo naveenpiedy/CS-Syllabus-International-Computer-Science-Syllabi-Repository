@@ -57,7 +57,7 @@ def index(request):
             prof_name = request.POST['professor']
             univ_name = request.POST['university']
             subj_name = request.POST['subjectname']
-
+            pdf_year=request.POST['dropdown']
             tag1 = request.POST['tag1']
             k1 = tag1.strip()
             if k1 != '':
@@ -91,6 +91,7 @@ def index(request):
             pdf_obj.professor_name = prof_name
             pdf_obj.subjectName = subj_name
             pdf_obj.university = univ_name
+            pdf_obj.year=pdf_year
             pdf_obj.save()
 
     return render(request, 'homeapp/dashboard.html', {
