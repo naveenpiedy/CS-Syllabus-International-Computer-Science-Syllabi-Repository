@@ -3,8 +3,8 @@ certifi==2018.1.18
 chardet==3.0.4
 colorama==0.3.9
 Django==2.0.1
-django-chartjs-engine==0.0.4
 django-filter==1.1.0
+django-jchart==0.4.2
 djangorestframework==3.7.7
 idna==2.6
 Markdown==2.6.11

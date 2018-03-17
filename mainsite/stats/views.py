@@ -1,32 +1,56 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.template.context_processors import csrf
 from homeapp.models import PDF
-from chartjs_engine.views.engine import ChartEngine
 from collections import Counter
 from django.db.models import Count, Func, F
 from mainsite import settings
+import random
+from jchart.config import rgba, Axes, Legend
 import json
-
+from jchart import Chart
 
 # Create your views here.
+
+
+class PieChart(Chart):
+    chart_type = 'pie'
+    #
+    legend = {'position': 'bottom'}
+
+    def geting_local_data(self, labels, data):
+        self.local_data = data
+        self.local_labels = labels
+
+    def get_labels(self, *args, **kwargs):
+        return self.local_labels
+
+
+    def get_datasets(self, *args, **kwargs):
+
+        colors = []
+
+        for _ in self.local_data:
+            red = random.randint(0,256)
+            green = random.randint(0,256)
+            blue = random.randint(0,256)
+            colors.append(rgba(red, green, blue, 0.5))
+
+        return [{
+            'label': "My Dataset",
+            'data': self.local_data,
+            'backgroundColor': colors
+        }]
+
 def index(request):
+    c = {}
+    c.update(csrf(request))
     abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).annotate(num=Count('list'))
     list_tags=list(abc)
     list_dic = {}
     for i in range(0, len(list_tags), 2):
         list_dic[list_tags[i]] = list_tags[i+1]
+    pie = PieChart()
+    pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
     # print(list_dic)
-    # print(json.dumps(list(list_dic.values())))
-    chart_setup = {
-        'chart_name': 'syllabi',
-        'chart_type': 'pie',
-        'chart_labels': list(list_dic.keys()),
-        'options': "options",
-        'datasets': {
-            'data1': list(list_dic.values()),
-            #'data1': [1,2,3,4,5]
-        }
-    }
-    engine = ChartEngine(**chart_setup)
-    chart = engine.make_chart()
-    return HttpResponse(settings.CHARTJS_SCRIPT + chart)
+    return render(request, 'stats/overall.html', {'piechart': pie}, c)
