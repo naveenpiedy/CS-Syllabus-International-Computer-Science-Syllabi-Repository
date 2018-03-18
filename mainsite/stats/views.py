@@ -6,16 +6,16 @@ from collections import Counter
 from django.db.models import Count, Func, F
 from mainsite import settings
 import random
-from jchart.config import rgba, Axes, Legend
+from jchart.config import rgba, Axes, Legend, Tick
 import json
 from jchart import Chart
+
 
 # Create your views here.
 
 
 class PieChart(Chart):
-    chart_type = 'pie'
-    #
+    chart_type = 'doughnut'
     legend = {'position': 'bottom'}
 
     def geting_local_data(self, labels, data):
@@ -25,16 +25,14 @@ class PieChart(Chart):
     def get_labels(self, *args, **kwargs):
         return self.local_labels
 
-
     def get_datasets(self, *args, **kwargs):
-
         colors = []
 
         for _ in self.local_data:
-            red = random.randint(0,256)
-            green = random.randint(0,256)
-            blue = random.randint(0,256)
-            colors.append(rgba(red, green, blue, 0.5))
+            red = random.randint(0, 256)
+            green = random.randint(0, 256)
+            blue = random.randint(0, 256)
+            colors.append(rgba(red, green, blue, 0.3))
 
         return [{
             'label': "My Dataset",
@@ -42,15 +40,60 @@ class PieChart(Chart):
             'backgroundColor': colors
         }]
 
+def returnk(**kwargs):
+    return dict(**kwargs)
+
+class BarChart(Chart):
+    chart_type = 'bar'
+    tick = {"beginAtZero":'true'}
+    f = returnk(beginAtZero=True)
+    print(f)
+    scales = {
+        'yAxes': [{'ticks': returnk(beginAtZero='true')}],
+    }
+
+    def geting_local_data(self, labels, data):
+        self.local_data = data
+        self.local_labels = labels
+
+    def get_labels(self, *args, **kwargs):
+        return self.local_labels
+
+    def get_datasets(self, *args, **kwargs):
+        colors = []
+
+        for _ in self.local_data:
+            red = random.randint(0, 256)
+            green = random.randint(0, 256)
+            blue = random.randint(0, 256)
+            colors.append(rgba(red, green, blue, 0.3))
+
+        return [{
+            'label': "My Dataset",
+            'data': self.local_data,
+            'backgroundColor': colors
+        }]
+
+
 def index(request):
     c = {}
     c.update(csrf(request))
-    abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).annotate(num=Count('list'))
-    list_tags=list(abc)
+    abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).annotate(
+        num=Count('list'))
+    list_tags = list(abc)
     list_dic = {}
     for i in range(0, len(list_tags), 2):
-        list_dic[list_tags[i]] = list_tags[i+1]
+        list_dic[list_tags[i]] = list_tags[i + 1]
     pie = PieChart()
-    pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
+    bar = BarChart()
+    if len(list_dic) > 20:
+        sorted_dic = sorted(list_dic.items(), key=lambda x: x[1])[:15]
+        sorted_values, sorted_data = zip(*sorted_dic)
+        print(sorted_values, sorted_data)
+        pie.geting_local_data(list(sorted_values), list(sorted_data))
+        bar.geting_local_data(list(sorted_values), list(sorted_data))
+    else:
+        pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
+        bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
     # print(list_dic)
-    return render(request, 'stats/overall.html', {'piechart': pie}, c)
+    return render(request, 'stats/overall.html', {'piechart': pie, 'barchart':bar}, c)
