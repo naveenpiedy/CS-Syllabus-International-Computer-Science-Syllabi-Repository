@@ -93,6 +93,25 @@ def index(request):
             pdf_obj.university = univ_name
             pdf_obj.year=pdf_year
             pdf_obj.save()
+            tag_group=pdf_obj.pdf_tags
+            for each_tag in tag_group:
+                record=Tag.objects.get(tagName=each_tag)
+                print('+_+_+_')
+                print(record)
+                print(pdf_obj.year)
+                if pdf_obj.year == 'Freshman':
+                    record.freshman = True
+                if pdf_obj.year == 'Junior':
+                    record.junior = True
+                if pdf_obj.year == 'Masters':
+                    record.master = True
+                if pdf_obj.year == 'Doctorate':
+                    record.phD = True
+                if pdf_obj.year == 'Senior':
+                    record.senior = True
+                if pdf_obj.year == 'Sophomore':
+                    record.sophomore = True
+                record.save()
 
     return render(request, 'homeapp/dashboard.html', {
         'First_Name': First_Name, 'Last_Name' : Last_Name, 'Email_Address' : Email, 'Username' : Username,
