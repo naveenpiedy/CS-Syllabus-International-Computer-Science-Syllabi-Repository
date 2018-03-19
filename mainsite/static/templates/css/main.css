@@ -1,0 +1,42 @@
+.center {
+    /*text-align: center;
+    align-content: center;*/
+    left: 25%
+}
+
+.navbar-style {
+    background-color: #4abdac;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 16px;
+}
+
+.navbar-brand-text {
+    color: #6c6d6a;
+    font-size: 3rem;
+}
+
+.navbar-font-text {
+    color: #6c6d6a;
+    font-size: 1.6rem;
+    font-family: "Lucida Console", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+.jumbotron-font-text {
+    font-family: "Lucida Console", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+
+.detailBox {
+    width: 100%;
+    border: 1px solid #bbb;
+    margin: 50px;
+}
+
+.card-body-text{
+    text-align: center;
+    align-content: center;
+
+}
