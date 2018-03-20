@@ -13,6 +13,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!--<link rel="stylesheet" type="text/css" href="../../../static/templates/css/main.css">-->
     <link rel="stylesheet" href="../../static/homeapp/css-own/main.css">
 
 </head>
@@ -58,8 +59,7 @@
                 <div style="background:transparent !important" class="jumbotron">
                     <div class="row">
                         <div class="col-md-3.5">
-                            <img src="http://laoblogger.com/images/default-profile-picture-5.jpg" width="200px"
-                                 height="200px">
+                            <!--<img src="http://laoblogger.com/images/default-profile-picture-5.jpg" width="200px" height="200px">-->
                         </div>
                         <div class="row col-md-8">
                             <div class="col-md-12">
@@ -77,41 +77,44 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
                 <div class="card text-left">
                     <img class="card-img-top" src="holder.js/100px180/" alt="">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-12">
                                 <h4>
                                     <small> Username: {{Username}}</small>
                                 </h4>
                             </div>
-                            <div class="col-md-4 text-center">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <h4>
                                     <small> University: {{University}}</small>
                                 </h4>
                             </div>
-                            <div class="col-md-4 text-center">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <h4>
                                     <small> Professor: {{Isprofessor}}</small>
                                 </h4>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center mt-5">
-                                <a class="btn btn-dark" href="/homeapp/editprofile" role="button">Edit Profile</a>
-                            </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center mt-4">
+                            <a class="btn btn-dark" style="margin-bottom: 10px" href="/homeapp/editprofile" role="button">Edit Profile</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-3"></div>
         </div>
-
     </div>
 
-    </div>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -192,7 +195,7 @@
             </div>
         </div>
         <div class="col-md-12 text-center mt-5 mb-5">
-            <a class="btn btn-dark" href="/homeapp/uploaded" role="button">Edit Profile</a>
+            <a class="btn btn-dark" href="/homeapp/uploaded" role="button">Edit Uploaded Syllabuses</a>
         </div>
     </div>
 
