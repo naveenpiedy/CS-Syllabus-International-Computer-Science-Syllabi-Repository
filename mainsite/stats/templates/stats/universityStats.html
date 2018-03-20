@@ -40,12 +40,42 @@
         <div class="form-group">
           <button type="submit" value="button_click" name="button_click" class="btn btn-dark">{% csrf_token %}Look Up!!</button>
         </div>
+    </div>
+    </div>
+    <div class="container mt-5">
+          <div class="row border-bottom">
+              <h1 class='display-1'>Overall Statistics</h1>
+          </div>
+           <div class="row mt-5 mb-5 text-center">
+              <div class="col-md-9 offset-2">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <h4 class="card-title">Title</h4>
+                        {{piechart.as_html}}
+                    </div>
+                  </div>
+
+              </div>
+          </div>
+          <div class="row mt-5 mb-5 text-center">
+              <div class="col-md-9 offset-2">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <h4 class="card-title">Title</h4>
+                        {{barchart.as_html}}
+                    </div>
+                  </div>
+
+              </div>
+          </div>
+
       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 </form>
   </body>
 </html>
