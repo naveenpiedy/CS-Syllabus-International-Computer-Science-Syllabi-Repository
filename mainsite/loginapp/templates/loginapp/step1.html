@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../../static/templates/css/main.css">
+    <link rel="stylesheet" href="../../static/loginapp/css-own/main.css">
 </head>
 
 <script>
@@ -41,13 +41,13 @@
 
     <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
     <div class="container mt-5">
-        <div class="jumbotron">
-            <h1 class="display-3">Input your email_id</h1>
+        <div style="background:transparent !important" class="jumbotron">
+            <h1 class="display-3">Forgot your password?</h1>
             <p class="lead">Please input your email address.</p>
             <input type="text" class="form-control" name="email" id="email">
         </div>
         <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-dark" name="button_click">{% csrf_token %}submit</button>
+                <button type="submit" class="btn btn-dark" name="button_click">{% csrf_token %}Submit</button>
         </div>
     </div>
     <!-- Optional JavaScript -->
