@@ -162,3 +162,21 @@ def analyze(request):
         bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
 
     return render(request, 'stats/universityStats.html', {'piechart': pie, 'barchart': bar}, c)
+
+def uni_analysis(request):
+    c = {}
+    c.update(csrf(request))
+    print(request.POST)
+    if 'tag' in request.POST:
+        spec_tag= request.POST['tag']
+        pdfs=PDF.objects.all()
+        print(spec_tag)
+        abc = PDF.objects.filter(pdf_tags__contains=[spec_tag])
+        # list_tags = list(abc)
+        # list_dic = {}
+        # for i in range(0, len(list_tags), 2):
+        #     list_dic[list_tags[i]] = list_tags[i + 1]
+        print('+_+_+_+_+_+_+_+_+')
+        print(abc)
+        print(abc[0].university)
+    return render(request,'stats/universityAnal.html',c)

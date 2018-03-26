@@ -10,10 +10,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
+  <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+
       <div class="container mt-5">
           <div class="row border-bottom">
               <h1 class='display-1'>University Analysis</h1>
           </div>
+          <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="tag">Enter Your Favourite Academic Area: </label>
+          <input type="text" class="form-control" name="tag" id="tag" placeholder="">{% csrf_token %}
+        </div>
+        </div>
+    </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <button type="submit" value="button_click" name="button_click" class="btn btn-dark">{% csrf_token %}Look Up!!</button>
+        </div>
+    </div>
            <div class="row mt-5 mb-5 text-center">
               <div class="col-md-9 offset-2">
                   <div class="card text-center">
@@ -45,5 +60,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      </form>
   </body>
 </html>
