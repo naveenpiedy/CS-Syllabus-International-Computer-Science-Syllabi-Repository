@@ -32,14 +32,14 @@ class App extends React.Component {
   render () {
     return <Router>
     <span>
-    <Redirect push to={"/search/searching/" +this.state.subjectName} />
-    <div class="container mt-5">
+    <Redirect push to={"/search/searching#" +this.state.subjectName} />
+    <div class="container mt-5 w-75 text-left ">
           <div class="row">
               <div class="col-md-9">
                   <div class="form-group">
-                    <label for="">Enter the subject name to search</label>
-                    <input type="text" class="form-control" name="subjectName" id="subjectName" aria-describedby="helpId" placeholder="" />
-                    <small id="helpId" class="form-text text-muted">Help text</small>
+                    <label for="subjectName" class="form-inline" >Enter the subject name to search</label>
+                    <input type="text" class="form-control form-inline" name="subjectName" id="subjectName" aria-describedby="helpId" placeholder="" />
+                    <small id="helpId" class="form-text form-inline text-muted">Enter your search terms</small>
                   </div>
               </div>
               <div class="col-md-3 align-self-center">
@@ -48,8 +48,9 @@ class App extends React.Component {
           </div>
           <div>
           </div>
-          <Body json={this.state.json}/> 
+          
       </div>
+      <Body json={this.state.json}/> 
     </span>  
     </Router>  
   }

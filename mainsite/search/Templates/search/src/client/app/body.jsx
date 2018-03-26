@@ -62,52 +62,52 @@ export class Body extends React.Component{
                     lister(this.props.json.count, this.props.json.results);
                     var lister_in_progress = subjectName1.map((item, index)=>{
                         return (
-                            <div class="card text-left mt-3" onClick = {()=>this.expand(index)}>
-                                <img class="card-img-top" src="holder.js/100px180/" alt="" />
+                            <div class="card text-left mt-3 mb-2" onClick = {()=>this.expand(index)}>
+                                <img class="card-img-top" data-src="holder.js/100px180/" alt="" />
                                 <div class="card-body">
-                                    <h4 class="card-title">{item}</h4>
-                                    <p class="card-text">University: {university1[index]}</p>
-                                    <p class="card-text">Professor: {professor1[index]}</p>
-                                    <p class="card-text">Tags: {tags1[index]}</p>
+                                    <h4 class="card-title display-4">{item}</h4>
+                                    <p class="card-text lead">University: {university1[index]}</p>
+                                    <p class="card-text lead">Professor: {professor1[index]}</p>
+                                    <small class="card-text text-muted">Tags: {tags1[index]}</small>
                                 </div>
                             </div>
                         )
                     });
-                    return <div class="container mt-5">
+                    return <div class="container mt-5 mb-5">
                         {lister_in_progress}
                     </div> 
             }
         }
         else{
             expansion = false;
-            return <div class="container">
+            return<div> <div class="container border rounded mt-5 mb-5">
             <div class="row">
                 <div class="col-md-12 text-center page-header">
-                    <h1>{this.state.eSubjectName}</h1>
+                    <h1 class="display-4 mb-5 mt-3">{this.state.eSubjectName}</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <p>{this.state.eProfessor}</p>
+                    <p class="lead"><span class="text-muted"> Professor Name:</span> {this.state.eProfessor}</p>
                 </div>
                 <div class="col-md-4 text-center">
-                    <p>{this.state.eUniversity}</p>
+                    <p class="lead"><span class="text-muted">University:</span>  {this.state.eUniversity}</p>
                 </div>
                 <div class="col-md-4 text-center">
-                    <p>{this.state.eTags}</p>
+                    <p class="lead"><span class="text-muted">Tags:</span>  {this.state.eTags}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 text-left">
-                    <h2>Syllabus</h2>
+                    <h2 class="display-4">Syllabus</h2>
                 </div>
             </div>
             <div class="row">
                 <p>{this.state.ePdfDes}</p>
-            </div>
-            <Disquis unique_id ={this.state.eId} teachers_name = {this.state.eProfessor} subjectName={this.state.eSubjectName} />    
+            </div>    
         </div>
-        
+        <Disquis unique_id ={this.state.eId} teachers_name = {this.state.eProfessor} subjectName={this.state.eSubjectName} />
+        </div>
         }
     return <div></div>
     }
