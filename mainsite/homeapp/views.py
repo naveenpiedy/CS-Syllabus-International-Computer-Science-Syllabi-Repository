@@ -42,6 +42,8 @@ def index(request):
         pdf_obj.uploaders = Username
         University = request.user.userinfo.university
         IsPro = request.user.userinfo.isprofessor
+    else:
+        return redirect("/login")
 
     if request.method == 'POST':
         myfile = request.FILES['file_path']
