@@ -172,11 +172,11 @@ def uni_analysis(request):
         pdfs=PDF.objects.all()
         print(spec_tag)
         abc = PDF.objects.filter(pdf_tags__contains=[spec_tag])
-        # list_tags = list(abc)
-        # list_dic = {}
-        # for i in range(0, len(list_tags), 2):
-        #     list_dic[list_tags[i]] = list_tags[i + 1]
-        print('+_+_+_+_+_+_+_+_+')
-        print(abc)
-        print(abc[0].university)
+        uni_list=[]
+        for one_pdf in list(abc):
+            uni_list.append(one_pdf.university)
+        d = Counter(uni_list)
+        dic=dict(d)
+        print(dic)
+
     return render(request,'stats/universityAnal.html',c)
