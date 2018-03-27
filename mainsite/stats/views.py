@@ -146,7 +146,6 @@ def analyze(request):
     for i in range(0, len(list_tags), 2):
         list_dic[list_tags[i]] = list_tags[i + 1]
 
-
     print(list_dic)
 
     pie = PieChart()
@@ -163,20 +162,38 @@ def analyze(request):
 
     return render(request, 'stats/universityStats.html', {'piechart': pie, 'barchart': bar}, c)
 
+
 def uni_analysis(request):
     c = {}
     c.update(csrf(request))
     print(request.POST)
+
+    dic={}
+
+    pie = PieChart()
+    bar = BarChart()
+
     if 'tag' in request.POST:
-        spec_tag= request.POST['tag']
-        pdfs=PDF.objects.all()
+        spec_tag = request.POST['tag']
         print(spec_tag)
         abc = PDF.objects.filter(pdf_tags__contains=[spec_tag])
-        uni_list=[]
+        uni_list = []
         for one_pdf in list(abc):
             uni_list.append(one_pdf.university)
-        d = Counter(uni_list)
-        dic=dict(d)
-        print(dic)
 
-    return render(request,'stats/universityAnal.html',c)
+        print(abc)
+        dic = Counter(uni_list)
+
+    print(dic)
+
+    if len(dic) > 20:
+        sorted_dic = sorted(dic.items(), key=lambda x: x[1])[:15]
+        sorted_values, sorted_data = zip(*sorted_dic)
+        print(sorted_values, sorted_data)
+        pie.geting_local_data(list(sorted_values), list(sorted_data))
+        bar.geting_local_data(list(sorted_values), list(sorted_data))
+    else:
+        pie.geting_local_data(list(dic.keys()), list(dic.values()))
+        bar.geting_local_data(list(dic.keys()), list(dic.values()))
+
+    return render(request, 'stats/uniAnalysis.html', {'piechart': pie, 'barchart': bar}, c)
