@@ -8,7 +8,6 @@ var university1;
 var tags1;
 var id;
 
-
 function tag_expander(input_tag){
     var returnstring = input_tag[0];
     console.log(input_tag)
@@ -36,6 +35,10 @@ function lister(count, results){
     console.log(professor1);
 }
 
+var pStyle = {
+    whiteSpace: 'pre-wrap',
+ };
+
 var expansion = false;
 export class Body extends React.Component{
    
@@ -48,11 +51,13 @@ export class Body extends React.Component{
         this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:"", eId:""};  
     }
 
+    
+
     expand(index){
         console.log("Clicked")
         var here= this.props.json.results[index];
         this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id});
-        console.log(here.id);
+        console.log(this.state.ePdfDes);
         expansion = true;
     }
 
@@ -103,7 +108,7 @@ export class Body extends React.Component{
                 </div>
             </div>
             <div class="row">
-                <p>{this.state.ePdfDes}</p>
+                <p style={pStyle}>{this.state.ePdfDes}</p>
             </div>    
         </div>
         <Disquis unique_id ={this.state.eId} teachers_name = {this.state.eProfessor} subjectName={this.state.eSubjectName} />
