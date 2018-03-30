@@ -1,81 +1,120 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
-  <body>
-  <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--<link rel="stylesheet" type="text/css" href="../../../static/templates/css/main.css">-->
+    <link rel="stylesheet" href="../../static/stats/css-own/main.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-style">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand navbar-brand-text" href="#">
+        CSSR
+    </a>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="../../homeapp">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout/">Logout</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
     <div class="container mt-5">
-        <div class="row border-bottom">   
+        <div class="row border-bottom">
             <h1 class='display-1'> Statistics</h1>
-    </div>
-    <div class="row mt-4">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="University">Enter University: </label>
-          <input type="text" class="form-control" name="University" id="University" aria-describedby="helpId" placeholder="">{% csrf_token %}
-          <small id="helpId" class="form-text text-muted">Enter the university for which you want the stats</small>
-          <div class="form-group">
-            <label class="mt-5" for="year">Select a year:</label>
-            <select class="form-control" name="year" id="year">
-              <option>None</option>
-              <option>Freshman</option>
-              <option>Spohomore</option>
-              <option>Senior</option>
-              <option>Junior</option>
-              <option>Masters</option>
-              <option>Doctorate</option>
-            </select>
-          </div>
         </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="University">Enter University: </label>
+                    <input type="text" class="form-control" name="University" id="University" aria-describedby="helpId"
+                           placeholder="">{% csrf_token %}
+                    <small id="helpId" class="form-text text-muted">Enter the university for which you want the stats
+                    </small>
+                    <div class="form-group">
+                        <label class="mt-5" for="year">Select a year:</label>
+                        <select class="form-control" name="year" id="year">
+                            <option>None</option>
+                            <option>Freshman</option>
+                            <option>Spohomore</option>
+                            <option>Senior</option>
+                            <option>Junior</option>
+                            <option>Masters</option>
+                            <option>Doctorate</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-          <button type="submit" value="button_click" name="button_click" class="btn btn-dark">{% csrf_token %}Look Up!!</button>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="submit" value="button_click" name="button_click" class="btn btn-dark">{% csrf_token %}Look
+                    Up!!
+                </button>
+            </div>
         </div>
-    </div>
     </div>
     <div class="container mt-5">
-          <div class="row border-bottom">
-              <h1 class='display-1'>Overall Statistics</h1>
-          </div>
-           <div class="row mt-5 mb-5 text-center">
-              <div class="col-md-9 offset-2">
-                  <div class="card text-center">
+        <div class="row border-bottom">
+            <h1 class='display-1'>Overall Statistics</h1>
+        </div>
+        <div class="row mt-5 mb-5 text-center">
+            <div class="col-md-9 offset-2">
+                <div class="card text-center">
                     <div class="card-body">
-                      <h4 class="card-title">Title</h4>
+                        <h4 class="card-title">Title</h4>
                         {{piechart.as_html}}
                     </div>
-                  </div>
+                </div>
 
-              </div>
-          </div>
-          <div class="row mt-5 mb-5 text-center">
-              <div class="col-md-9 offset-2">
-                  <div class="card text-center">
+            </div>
+        </div>
+        <div class="row mt-5 mb-5 text-center">
+            <div class="col-md-9 offset-2">
+                <div class="card text-center">
                     <div class="card-body">
-                      <h4 class="card-title">Title</h4>
+                        <h4 class="card-title">Title</h4>
                         {{barchart.as_html}}
                     </div>
-                  </div>
+                </div>
 
-              </div>
-          </div>
+            </div>
+        </div>
 
-      </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 </form>
-  </body>
+</body>
 </html>
