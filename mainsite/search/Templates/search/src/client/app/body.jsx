@@ -48,7 +48,7 @@ export class Body extends React.Component{
         //console.log(this.props.professor);
         //console.log(this.props.university);
         this.expand = this.expand.bind(this);
-        this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:"", eId:""};  
+        this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:"", eTopics:"", eId:""};  
     }
 
     
@@ -56,7 +56,7 @@ export class Body extends React.Component{
     expand(index){
         console.log("Clicked")
         var here= this.props.json.results[index];
-        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id});
+        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTopics:here.pdf_topic, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id});
         console.log(this.state.ePdfDes);
         expansion = true;
     }
@@ -85,7 +85,7 @@ export class Body extends React.Component{
         }
         else{
             expansion = false;
-            return<div> <div class="container border rounded mt-5 mb-5">
+            return<div> <div class="container border rounded mt-5 mb-5 pl-5 pr-5">
             <div class="row">
                 <div class="col-md-12 text-center page-header">
                     <h1 class="display-4 mb-5 mt-3">{this.state.eSubjectName}</h1>
@@ -109,9 +109,18 @@ export class Body extends React.Component{
             </div>
             <div class="row">
                 <p style={pStyle}>{this.state.ePdfDes}</p>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left">
+                    <h2 class="display-4">Topics</h2>
+                </div>
+            </div>
+            <div class="row">
+                <p style={pStyle}>{this.state.eTopics}</p>
             </div>    
         </div>
-        <Disquis unique_id ={this.state.eId} teachers_name = {this.state.eProfessor} subjectName={this.state.eSubjectName} />
+        <div class='container'>
+        <Disquis unique_id ={this.state.eId} teachers_name = {this.state.eProfessor} subjectName={this.state.eSubjectName} /></div>
         </div>
         }
     return <div></div>
