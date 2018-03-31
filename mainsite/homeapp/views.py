@@ -54,7 +54,10 @@ def index(request):
             str = os.path.join(settings.MEDIA_ROOT, myfile.name)
             result = doPDF(str)
             final_result = extractInfo(result)
-            pdf_obj.pdf_desc = final_result
+            if final_result[0]:
+                pdf_obj.pdf_topic = final_result[0]
+            if final_result[1]:
+                pdf_obj.pdf_desc = final_result[1]
 
             prof_name = request.POST['professor']
             univ_name = request.POST['university']
@@ -143,7 +146,9 @@ def doPDF(url):
     return str
 
 def extractInfo(str):
-    final_result=''
+    final_result=[]
+    topic_str=''
+    des_sum=''
     lowered_output = str.lower()
     index01 = lowered_output.find('topic')
     index02 = lowered_output.find('descr')
@@ -151,21 +156,24 @@ def extractInfo(str):
     if index01 != -1:
         str01 = str[index01:]
         spl01 = re.split(r'\n\n', str01)
-        final_result+=spl01[0]
+        topic_str+=spl01[0]
+        final_result.append(topic_str)
 
     if index02 != -1:
         str02 = str[index02:]
         spl02 = re.split(r'\n\n', str02)
-        final_result += spl02[0]
+        des_sum += spl02[0]
+        final_result.append(des_sum)
         return final_result
 
     elif index03 != -1:
         str03 = str[index03:]
         spl03 = re.split(r'\n\n', str03)
-        final_result+=spl03[0]
+        des_sum+=spl03[0]
+        final_result.append(des_sum)
         return final_result
     else:
-        return ''
+        return final_result
 
 def edit_profile(request):
     c = {}
