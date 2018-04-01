@@ -32,7 +32,9 @@
                               <div class="col-md-9">
                                   <h5 class="card-title">{{name.1}}</h5></div>
                               <div class="col-md-3">
-                                  <button type="submit" value="{{name.0}}" class="btn btn-dark" id="{{name.0}}" name= "Delete">{% csrf_token %}Delete</button></div>
+                                  <button type="submit" value="{{name.0}}" class="btn btn-dark" id="D{{name.0}}" name= "Delete">{% csrf_token %}Delete</button>
+                                  <button type="submit" value="{{name.0}}" class="btn btn-dark" id="E{{name.0}}" name= "Edit">{% csrf_token %}Edit</button>
+                              </div>
                           </div>
                       </div>
                     </div>
