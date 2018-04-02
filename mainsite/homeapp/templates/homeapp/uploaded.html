@@ -52,23 +52,27 @@
         </ul>
     </div>
 </nav>
-     <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
-      <div class="container mt-5">
-            <div class="list-group">
-                {% for name in List %}
-                <div class="card mt-3" style="">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-md-9">
-                                  <h5 class="card-title">{{name.1}}</h5></div>
-                              <div class="col-md-3">
-                                  <button type="submit" value="{{name.0}}" class="btn btn-dark" id="D{{name.0}}" name= "Delete">{% csrf_token %}Delete</button>
-                                  <button type="submit" value="{{name.0}}" class="btn btn-dark" id="E{{name.0}}" name= "Edit">{% csrf_token %}Edit</button>
-                              </div>
-                          </div>
-                      </div>
+<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+    <div class="container mt-5">
+        <div class="list-group">
+            {% for name in List %}
+            <div class="card mt-3" style="">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h5 class="card-title">{{name.1}}</h5></div>
+                        <div class="col-md-3">
+                            <button type="submit" value="{{name.0}}" class="btn btn-dark" id="D{{name.0}}"
+                                    name="Delete">{% csrf_token %}Delete
+                            </button>
+                            <button type="submit" value="{{name.0}}" class="btn btn-dark" id="E{{name.0}}" name="Edit">
+                                {% csrf_token %}Edit
+                            </button>
+                        </div>
                     </div>
-                {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
 
         </div>
     </div>
