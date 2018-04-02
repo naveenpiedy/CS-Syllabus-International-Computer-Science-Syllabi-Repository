@@ -233,11 +233,14 @@ def see_uploaded(request):
     c = {}
     c.update(csrf(request))
     print(request.POST)
-    if request.method=='POST':
-        if request.POST['Delete']:
+    if request.method == 'POST':
+        if 'Delete' in request.POST:
             delete_id=request.POST['Delete']
             spe_pdf=PDF.objects.get(id=delete_id)
             spe_pdf.delete()
+        elif 'Edit' in request.POST:
+            edit_id = request.POST['Edit']
+            return redirect('edit_content', id=edit_id)
 
     if request.user.is_authenticated:
         user_name=request.user.username
@@ -249,21 +252,23 @@ def see_uploaded(request):
 
     return render(request,'homeapp/uploaded.html',{'List':list},c)
 
-def edit_content(request):
+def edit_content(request, id):
     c = {}
+    print(id)
     c.update(csrf(request))
     print(request.POST)
     if request.user.is_authenticated:
         user_name = request.user.username
-        pdfs = PDF.objects.filter(uploaders=user_name)
-        list = []
-        for one_pdf in pdfs:
-            list.append(one_pdf.id)
-        max_id = max(list)
-        spec_pdf = PDF.objects.get(id=max_id)
+        # pdfs = PDF.objects.filter(uploaders=user_name)
+        # list = []
+        # for one_pdf in pdfs:
+        #     list.append(one_pdf.id)
+        # max_id = max(list)
+        spec_pdf = PDF.objects.get(uploaders = user_name, id=id)
         if request.method=='POST' and request.POST['upload']:
             print("_+_+_+_+_+_+_+_+_+_+")
             new_desc = request.POST['Description']
+            new_topic = request.POST['Topics']
             new_prof = request.POST['professor']
             new_univ = request.POST['university']
             new_sub = request.POST['subjectname']
@@ -277,14 +282,15 @@ def edit_content(request):
             spec_pdf.university = new_univ
             spec_pdf.subjectName = new_sub
             spec_pdf.pdf_tags = new_list
+            spec_pdf.pdf_topic = new_topic
             spec_pdf.save()
             return render(request, 'homeapp/EditSyllabus.html', {
-                'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
+                'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,'Topics': new_topic,
                 'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3
             })
         else:
             return render(request, 'homeapp/EditSyllabus.html', {
-                'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name, 'university': spec_pdf.university,
+                'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name, 'university': spec_pdf.university, 'Topics': spec_pdf.pdf_topic,
                 'subjectname': spec_pdf.subjectName, 'tag1': spec_pdf.pdf_tags[0], 'tag2': spec_pdf.pdf_tags[1], 'tag3': spec_pdf.pdf_tags[2]
             })
 
