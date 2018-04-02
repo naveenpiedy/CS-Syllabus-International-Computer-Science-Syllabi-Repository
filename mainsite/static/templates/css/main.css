@@ -5,15 +5,16 @@
 }
 
 .navbar-style {
-    background-color: #4abdac;
+    background-color: SKYBLUE;
     font-weight: 700;
     font-size: 1.2rem;
     padding: 16px;
+    height: 80px;
 }
 
 .navbar-brand-text {
     color: #6c6d6a;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .navbar-font-text {
@@ -40,3 +41,8 @@
     align-content: center;
 
 }
+
+.margin-settings{
+    margin-bottom: 100px;
+}
+
