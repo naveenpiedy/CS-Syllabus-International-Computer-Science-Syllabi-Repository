@@ -117,6 +117,13 @@ def index(request):
                 if pdf_obj.year == 'Sophomore':
                     record.sophomore = True
                 record.save()
+            id_list=[]
+            user_uploaded=PDF.objects.filter(uploaders=Username)
+            for upl in user_uploaded:
+                id_list.append(upl.id)
+            max_id=max(id_list)
+            print(max_id)
+            return redirect('edit_content', id=max_id)
 
     return render(request, 'homeapp/dashboard.html', {
         'First_Name': First_Name, 'Last_Name' : Last_Name, 'Email_Address' : Email, 'Username' : Username,
