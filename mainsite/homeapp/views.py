@@ -54,9 +54,9 @@ def index(request):
             str = os.path.join(settings.MEDIA_ROOT, myfile.name)
             result = doPDF(str)
             final_result = extractInfo(result)
-            if final_result[0]:
+            if len(final_result)>0:
                 pdf_obj.pdf_topic = final_result[0]
-            if final_result[1]:
+            if len(final_result)>1:
                 pdf_obj.pdf_desc = final_result[1]
 
             prof_name = request.POST['professor']
@@ -296,9 +296,19 @@ def edit_content(request, id):
                 'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3
             })
         else:
+            tag1 = ''
+            tag2 = ''
+            tag3 = ''
+            if len(spec_pdf.pdf_tags)>0:
+                tag1 = spec_pdf.pdf_tags[0]
+            if len(spec_pdf.pdf_tags)>1:
+                tag2 = spec_pdf.pdf_tags[1]
+            if len(spec_pdf.pdf_tags)>2:
+                tag3 = spec_pdf.pdf_tags[2]
+
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name, 'university': spec_pdf.university, 'Topics': spec_pdf.pdf_topic,
-                'subjectname': spec_pdf.subjectName, 'tag1': spec_pdf.pdf_tags[0], 'tag2': spec_pdf.pdf_tags[1], 'tag3': spec_pdf.pdf_tags[2]
+                'subjectname': spec_pdf.subjectName, 'tag1': tag1, 'tag2': tag2, 'tag3': tag3
             })
 
 
