@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
 
-
 # Create your tests here.
 class IndexTest(TestCase):
     def setUp(self):
@@ -38,11 +37,22 @@ class IndexTest(TestCase):
         c.login(username='Test1', password='test1password')
         with open('homeapp/test/test1.pdf', encoding='latin-1') as fp:
             c.post('/homeapp/',
-                {'professor': 'Doc Brown', 'university': 'Hill Valley High School', 'subjectname': 'Time Travel',
+                   {'professor': 'Doc Brown', 'university': 'Hill Valley High School', 'subjectname': 'Time Travel',
                     'dropdown': 'Freshman', 'tag1': '88mph', 'tag2': 'Comedy', 'tag3': 'Physics', 'file_path': fp})
 
         pdf_test = PDF.objects.get(professor_name='Doc Brown')
         self.assertEqual(pdf_test.university, 'Hill Valley High School')
+
+        c.post('/homeapp/editprofile',
+               {'last_name': 'Who', 'first_name': 'Doctor', 'university': 'All of time and space',
+                'isProfessor': 'checkedValue', 'old_password': 'test1password', 'new_password': 'Tardis1',
+                'retype_new_password': 'Tardis1'})
+        user_test = User.objects.get(username='Test1')
+        self.assertTrue(user_test.first_name, 'Doctor')
+        c.logout()
+        response = c.login(username='Test1', password='Tardis1')
+        self.assertTrue(response)
+
 
         test2 = User.objects.get(username='Test2')
         self.assertEqual(test2.username, 'Test2')
