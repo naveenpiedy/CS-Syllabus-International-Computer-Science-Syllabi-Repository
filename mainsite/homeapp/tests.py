@@ -4,9 +4,12 @@ from homeapp.models import PDF
 from django.test import Client
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your tests here.
+
+
 class IndexTest(TestCase):
     def setUp(self):
         User.objects.create_user("Test1", email='test1@test.edu', password='test1password', first_name='Test',
@@ -49,9 +52,13 @@ class IndexTest(TestCase):
                 'retype_new_password': 'Tardis1'})
         user_test = User.objects.get(username='Test1')
         self.assertTrue(user_test.first_name, 'Doctor')
+        self.assertEqual(user_test.userinfo.university, 'All of time and space')
         c.logout()
         response = c.login(username='Test1', password='Tardis1')
         self.assertTrue(response)
+        c.post('/homeapp/uploaded', {'Delete': pdf_test.id})
+        self.assertRaises(PDF.DoesNotExist, PDF.objects.get, professor_name='Doc Brown')
+
 
 
         test2 = User.objects.get(username='Test2')
