@@ -16,18 +16,18 @@ from django.http import HttpResponseRedirect
 def index(request):
     c = {}
     c.update(csrf(request))
-    print(c)
+    #print(c)
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
+        #print(request.POST)
         if "button_click" in request.POST:
-            print(username, password)
+            #print(username, password)
             user = authenticate(username=username, password=password)
             if user is not None:
                 print('Testing')
                 login(request, user)
-                return HttpResponseRedirect('../../homeapp')
+                return redirect('/homeapp')
             else:
                 print("Debugging")
     return render(request, 'loginapp/base.html', c)
