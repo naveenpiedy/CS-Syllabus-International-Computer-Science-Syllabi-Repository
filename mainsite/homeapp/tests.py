@@ -63,6 +63,18 @@ class IndexTest(TestCase):
 
         test2 = User.objects.get(username='Test2')
         self.assertEqual(test2.username, 'Test2')
+        c.login(username='Test2', password='test2password')
+        with open('homeapp/test/test1.pdf', encoding='latin-1') as fp:
+            c.post('/homeapp/',
+                   {'professor': 'Severus Snape', 'university': 'Hogwarts', 'subjectname': 'Potions',
+                    'dropdown': 'Freshman', 'tag1': 'Biased', 'tag2': 'Slytherin', 'tag3': '', 'file_path': fp})
+
+        response = c.post('/homeapp/uploaded')
+        #print(response.context['List'])
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['List'], [[2, 'test1.pdf']])
+        #self.assertContains(response, 'Company Name XYZ')
+
 
         test3 = User.objects.get(username='Test3')
         self.assertEqual(test3.username, 'Test3')

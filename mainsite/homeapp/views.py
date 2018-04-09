@@ -8,12 +8,13 @@ from django.template.context_processors import csrf
 from django.core.files.storage import FileSystemStorage
 from signupapp.models import UserTable
 from pdfminer import pdfinterp
-from pdfminer.pdfparser import PDFDocument,PDFPage,PDFParser
+from pdfminer.pdfparser import PDFDocument, PDFPage, PDFParser
 from pdfminer.layout import *
 from pdfminer.converter import PDFPageAggregator
 from .models import PDF
 from .models import Tag
 import re
+
 
 # def index(request):
 #     return render(request, 'homeapp/dashboard.html')
@@ -28,7 +29,7 @@ def index(request):
     Username = ""
     University = ""
     IsPro = ""
-    total_tag=[]
+    total_tag = []
     pdf_obj = PDF()
     tag_obj1 = Tag()
     tag_obj2 = Tag()
@@ -54,15 +55,15 @@ def index(request):
             str = os.path.join(settings.MEDIA_ROOT, myfile.name)
             result = doPDF(str)
             final_result = extractInfo(result)
-            if len(final_result)>0:
+            if len(final_result) > 0:
                 pdf_obj.pdf_topic = final_result[0]
-            if len(final_result)>1:
+            if len(final_result) > 1:
                 pdf_obj.pdf_desc = final_result[1]
 
             prof_name = request.POST['professor']
             univ_name = request.POST['university']
             subj_name = request.POST['subjectname']
-            pdf_year=request.POST['dropdown']
+            pdf_year = request.POST['dropdown']
             tag1 = request.POST['tag1']
             k1 = tag1.strip()
             if k1 != '':
@@ -96,11 +97,11 @@ def index(request):
             pdf_obj.professor_name = prof_name
             pdf_obj.subjectName = subj_name
             pdf_obj.university = univ_name
-            pdf_obj.year=pdf_year
+            pdf_obj.year = pdf_year
             pdf_obj.save()
-            tag_group=pdf_obj.pdf_tags
+            tag_group = pdf_obj.pdf_tags
             for each_tag in tag_group:
-                record=Tag.objects.get(tagName=each_tag)
+                record = Tag.objects.get(tagName=each_tag)
                 print('+_+_+_')
                 print(record)
                 print(pdf_obj.year)
@@ -117,45 +118,47 @@ def index(request):
                 if pdf_obj.year == 'Sophomore':
                     record.sophomore = True
                 record.save()
-            id_list=[]
-            user_uploaded=PDF.objects.filter(uploaders=Username)
+            id_list = []
+            user_uploaded = PDF.objects.filter(uploaders=Username)
             for upl in user_uploaded:
                 id_list.append(upl.id)
-            max_id=max(id_list)
+            max_id = max(id_list)
             print(max_id)
             return redirect('edit_content', id=max_id)
 
     return render(request, 'homeapp/dashboard.html', {
-        'First_Name': First_Name, 'Last_Name' : Last_Name, 'Email_Address' : Email, 'Username' : Username,
-        'University' : University, 'Isprofessor' : IsPro
+        'First_Name': First_Name, 'Last_Name': Last_Name, 'Email_Address': Email, 'Username': Username,
+        'University': University, 'Isprofessor': IsPro
     })
+
 
 def doPDF(url):
     fp = open(url, 'rb')
-    parser=PDFParser(fp)
+    parser = PDFParser(fp)
     doc = PDFDocument()
     parser.set_document(doc)
     doc.set_parser(parser)
     doc.initialize()
 
-    resource_manager=pdfinterp.PDFResourceManager()
+    resource_manager = pdfinterp.PDFResourceManager()
     laparams = LAParams()
     device = PDFPageAggregator(resource_manager, laparams=laparams)
     interpreter = pdfinterp.PDFPageInterpreter(resource_manager, device)
-    pages=doc.get_pages()
-    str=''
+    pages = doc.get_pages()
+    str = ''
     for page in pages:
         interpreter.process_page(page)
-        layout=device.get_result()
+        layout = device.get_result()
         for x in layout:
-            if isinstance(x,LTText):
-                str+=x.get_text()
+            if isinstance(x, LTText):
+                str += x.get_text()
     return str
 
+
 def extractInfo(str):
-    final_result=[]
-    topic_str=''
-    des_sum=''
+    final_result = []
+    topic_str = ''
+    des_sum = ''
     lowered_output = str.lower()
     index01 = lowered_output.find('topic')
     index02 = lowered_output.find('descr')
@@ -163,7 +166,7 @@ def extractInfo(str):
     if index01 != -1:
         str01 = str[index01:]
         spl01 = re.split(r'\n\n', str01)
-        topic_str+=spl01[0]
+        topic_str += spl01[0]
         final_result.append(topic_str)
 
     if index02 != -1:
@@ -176,11 +179,12 @@ def extractInfo(str):
     elif index03 != -1:
         str03 = str[index03:]
         spl03 = re.split(r'\n\n', str03)
-        des_sum+=spl03[0]
+        des_sum += spl03[0]
         final_result.append(des_sum)
         return final_result
     else:
         return final_result
+
 
 def edit_profile(request):
     c = {}
@@ -189,37 +193,36 @@ def edit_profile(request):
         checked = ""
         First_Name = request.user.first_name
         Last_Name = request.user.last_name
-        #Email = request.user.email
-        #Username = request.user.username
+        # Email = request.user.email
+        # Username = request.user.username
         University = request.user.userinfo.university
         IsPro = request.user.userinfo.isprofessor
         if IsPro:
             checked = 'checked'
 
-
     if request.method == 'POST' and request.user.is_authenticated:
         user = User.objects.get(username=request.user.username)
         ut = UserTable.objects.get(user=user)
         print(request.POST)
-        if not request.POST['first_name'].isspace() and request.POST['first_name']!='':
+        if not request.POST['first_name'].isspace() and request.POST['first_name'] != '':
             user.first_name = request.POST['first_name']
-        if not request.POST['last_name'].isspace() and request.POST['last_name']!='':
+        if not request.POST['last_name'].isspace() and request.POST['last_name'] != '':
             user.last_name = request.POST['last_name']
-        if not request.POST['university'].isspace() and request.POST['university']!='':
+        if not request.POST['university'].isspace() and request.POST['university'] != '':
             ut.university = request.POST['university']
 
         if 'isProfessor' in request.POST:
-            IsPro=True
+            IsPro = True
         else:
-            IsPro=False
-        ut.isprofessor=IsPro
+            IsPro = False
+        ut.isprofessor = IsPro
         uuser = authenticate(username=user.username, password=request.POST['old_password'])
         if uuser is not None:
-            if not request.POST['new_password'].isspace() and request.POST['new_password']!='':
+            if not request.POST['new_password'].isspace() and request.POST['new_password'] != '':
                 if request.POST['new_password'] == request.POST['retype_new_password']:
                     print("Yeahhh")
                     user.set_password(request.POST['new_password'])
-                    #updr.save()ate_session_auth_hash(request, user)
+                    # updr.save()ate_session_auth_hash(request, user)
 
         user.save()
         ut.save()
@@ -233,31 +236,28 @@ def edit_profile(request):
         }, c)
 
 
-
-
-
 def see_uploaded(request):
     c = {}
     c.update(csrf(request))
     print(request.POST)
     if request.method == 'POST':
         if 'Delete' in request.POST:
-            delete_id=request.POST['Delete']
-            spe_pdf=PDF.objects.get(id=delete_id)
+            delete_id = request.POST['Delete']
+            spe_pdf = PDF.objects.get(id=delete_id)
             spe_pdf.delete()
         elif 'Edit' in request.POST:
             edit_id = request.POST['Edit']
             return redirect('edit_content', id=edit_id)
 
     if request.user.is_authenticated:
-        user_name=request.user.username
+        user_name = request.user.username
         pdfs = PDF.objects.filter(uploaders=user_name)
-        list=[]
+        list = []
         for one_pdf in pdfs:
-            list.append([one_pdf.id,one_pdf.pdfName])
+            list.append([one_pdf.id, one_pdf.pdfName])
+    print(list)
+    return render(request, 'homeapp/uploaded.html', {'List': list}, c)
 
-
-    return render(request,'homeapp/uploaded.html',{'List':list},c)
 
 def edit_content(request, id):
     c = {}
@@ -271,8 +271,8 @@ def edit_content(request, id):
         # for one_pdf in pdfs:
         #     list.append(one_pdf.id)
         # max_id = max(list)
-        spec_pdf = PDF.objects.get(uploaders = user_name, id=id)
-        if request.method=='POST' and request.POST['upload']:
+        spec_pdf = PDF.objects.get(uploaders=user_name, id=id)
+        if request.method == 'POST' and request.POST['upload']:
             print("_+_+_+_+_+_+_+_+_+_+")
             new_desc = request.POST['Description']
             new_topic = request.POST['Topics']
@@ -292,29 +292,25 @@ def edit_content(request, id):
             spec_pdf.pdf_topic = new_topic
             spec_pdf.save()
             return render(request, 'homeapp/EditSyllabus.html', {
-                'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,'Topics': new_topic,
+                'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
+                'Topics': new_topic,
                 'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3
             })
         else:
             tag1 = ''
             tag2 = ''
             tag3 = ''
-            if len(spec_pdf.pdf_tags)>0:
+            if len(spec_pdf.pdf_tags) > 0:
                 tag1 = spec_pdf.pdf_tags[0]
-            if len(spec_pdf.pdf_tags)>1:
+            if len(spec_pdf.pdf_tags) > 1:
                 tag2 = spec_pdf.pdf_tags[1]
-            if len(spec_pdf.pdf_tags)>2:
+            if len(spec_pdf.pdf_tags) > 2:
                 tag3 = spec_pdf.pdf_tags[2]
 
             return render(request, 'homeapp/EditSyllabus.html', {
-                'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name, 'university': spec_pdf.university, 'Topics': spec_pdf.pdf_topic,
+                'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name,
+                'university': spec_pdf.university, 'Topics': spec_pdf.pdf_topic,
                 'subjectname': spec_pdf.subjectName, 'tag1': tag1, 'tag2': tag2, 'tag3': tag3
             })
 
-
-    return render(request,'homeapp/EditSyllabus.html',c)
-
-
-
-
-
+    return render(request, 'homeapp/EditSyllabus.html', c)
