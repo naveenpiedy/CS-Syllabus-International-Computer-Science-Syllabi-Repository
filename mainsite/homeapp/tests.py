@@ -59,8 +59,6 @@ class IndexTest(TestCase):
         c.post('/homeapp/uploaded', {'Delete': pdf_test.id})
         self.assertRaises(PDF.DoesNotExist, PDF.objects.get, professor_name='Doc Brown')
 
-
-
         test2 = User.objects.get(username='Test2')
         self.assertEqual(test2.username, 'Test2')
         c.login(username='Test2', password='test2password')
@@ -70,14 +68,24 @@ class IndexTest(TestCase):
                     'dropdown': 'Freshman', 'tag1': 'Biased', 'tag2': 'Slytherin', 'tag3': '', 'file_path': fp})
 
         response = c.post('/homeapp/uploaded')
-        #print(response.context['List'])
+        # print(response.context['List'])
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['List'], [[2, 'test1.pdf']])
-        #self.assertContains(response, 'Company Name XYZ')
-
+        c.logout()
 
         test3 = User.objects.get(username='Test3')
         self.assertEqual(test3.username, 'Test3')
+        c.login(username='Test3', password='test3password')
+        with open('homeapp/test/test1.pdf', encoding='latin-1') as fp:
+            c.post('/homeapp/',
+                   {'professor': 'Professor X', 'university': 'X Mansion', 'subjectname': 'Genetics',
+                    'dropdown': 'Freshman', 'tag1': 'X_men', 'tag2': '', 'tag3': '', 'file_path': fp})
+        id = PDF.objects.get(professor_name='Professor X')
+        c.post('/homeapp/editpdf/' + str(id.id),
+               {'upload': 'save', 'professor': 'Professor X', 'Description': 'Des Changed', 'Topics': 'Topics Changed',
+                'subjectname': "Gen X", 'university': 'X Mansion', 'tag1': 'X_men', 'tag2': '', 'tag3': ''})
+        x = PDF.objects.get(professor_name='Professor X')
+        self.assertEqual(x.subjectName, 'Gen X')
 
         test4 = User.objects.get(username='Test4')
         self.assertEqual(test4.username, 'Test4')
