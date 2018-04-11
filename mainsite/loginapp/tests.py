@@ -94,21 +94,21 @@ class LoginTest(TestCase):
     def test_login(self):
         # self.client.post('        response = c.post('/homeapp/uploaded')')
         response = self.client.post('/login/', self.credentials1, follow=True)
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response.context['user'].is_authenticated)
         self.client.logout()
 
         response = self.client.post('/login/', self.credentials2, follow=True)
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response.context['user'].is_authenticated)
         self.client.logout()
 
         response = self.client.post('/login/', self.credentials3, follow=True)
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response.context['user'].is_authenticated)
         self.client.logout()
 
         response = self.client.post('/login/', self.credentials4, follow=True)
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response.context['user'].is_authenticated)
         self.client.logout()
 
         response = self.client.post('/login/', self.credentials5, follow=True)
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response.context['user'].is_authenticated)
         self.client.logout()
