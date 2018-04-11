@@ -92,22 +92,23 @@ class LoginTest(TestCase):
         User.objects.create_user(**self.userinfo5part1)
 
     def test_login(self):
-        self.client.login(**self.credentials1)
+        # self.client.post('        response = c.post('/homeapp/uploaded')')
+        response = self.client.post('/login/', self.credentials1, follow=True)
         self.assertTrue(response.context['user'].is_active)
         self.client.logout()
 
-        self.client.login(**self.credentials2)
+        response = self.client.post('/login/', self.credentials2, follow=True)
         self.assertTrue(response.context['user'].is_active)
         self.client.logout()
 
-        self.client.login(**self.credentials3)
+        response = self.client.post('/login/', self.credentials3, follow=True)
         self.assertTrue(response.context['user'].is_active)
         self.client.logout()
 
-        self.client.login(**self.credentials4)
+        response = self.client.post('/login/', self.credentials4, follow=True)
         self.assertTrue(response.context['user'].is_active)
         self.client.logout()
 
-        self.client.login(**self.credentials5)
+        response = self.client.post('/login/', self.credentials5, follow=True)
         self.assertTrue(response.context['user'].is_active)
         self.client.logout()
