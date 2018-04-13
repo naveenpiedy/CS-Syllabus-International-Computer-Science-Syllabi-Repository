@@ -91,8 +91,27 @@ class LoginTest(TestCase):
 
         User.objects.create_user(**self.userinfo5part1)
 
-    def test_login(self):
-        # self.client.post('        response = c.post('/homeapp/uploaded')')
+        self.incorrect_credentials1 = {'username': 'test1username_incorrect',
+                                       'password': 'test1password_incorrect',
+                                       'button_click': 'button_click'}
+
+        self.incorrect_credentials2 = {'username': 'test2username_incorrect',
+                                       'password': 'test2password_incorrect',
+                                       'button_click': 'button_click'}
+
+        self.incorrect_credentials3 = {'username': 'test3username_incorrect',
+                                       'password': 'test3password_incorrect',
+                                       'button_click': 'button_click'}
+
+        self.incorrect_credentials4 = {'username': 'test4username_incorrect',
+                                       'password': 'test4password_incorrect',
+                                       'button_click': 'button_click'}
+
+        self.incorrect_credentials5 = {'username': 'test5username_incorrect',
+                                       'password': 'test5password_incorrect',
+                                       'button_click': 'button_click'}
+
+    def test_correct_login(self):
         response = self.client.post('/login/', self.credentials1, follow=True)
         self.assertTrue(response.context['user'].is_authenticated)
         self.client.logout()
@@ -112,3 +131,19 @@ class LoginTest(TestCase):
         response = self.client.post('/login/', self.credentials5, follow=True)
         self.assertTrue(response.context['user'].is_authenticated)
         self.client.logout()
+
+    def test_incorrect_login(self):
+        response = self.client.post(('/login/'), self.incorrect_credentials1, follow=False)
+        self.assertFalse(True, response.read())
+
+        response = self.client.post(('/login/'), self.incorrect_credentials2, follow=False)
+        self.assertFalse(True, response.read())
+
+        response = self.client.post(('/login/'), self.incorrect_credentials3, follow=False)
+        self.assertFalse(True, response.read())
+
+        response = self.client.post(('/login/'), self.incorrect_credentials4, follow=False)
+        self.assertFalse(True, response.read())
+
+        response = self.client.post(('/login/'), self.incorrect_credentials5, follow=False)
+        self.assertFalse(True, response.read())
