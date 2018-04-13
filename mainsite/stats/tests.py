@@ -31,22 +31,9 @@ class IndexTest1(TestCase):
 
         test1 = User.objects.get(username='Test1')
         self.assertEqual(test1.username, 'Test1')
-        c.login(username='Test1', password='test1password')
-        abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).annotate(
-            num=Count('list'))
 
-        list_tags = list(abc)
-        list_dic = {}
-        for i in range(0, len(list_tags), 2):
-            list_dic[list_tags[i]] = list_tags[i + 1]
-
-        print(list_tags)
-        print('+_+_+_+_+_+_+_++_+_')
-        print(list_dic)
-        pdf_test = PDF.objects.get(professor_name='Prof.Zhang')
-        self.assertEqual(pdf_test.university, 'ASU')
-        # c.post('/stats/')
-
+        response=c.post('/stats/')
+        self.assertEqual(response.context['piechart'].local_data, [3,3])
 
 
 class IndexTest2(TestCase):
@@ -65,11 +52,8 @@ class IndexTest2(TestCase):
         c = Client()
         test1 = User.objects.get(username='Test1')
         self.assertEqual(test1.username, 'Test1')
-        c.login(username='Test1', password='test1password')
-        abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).filter(
-            university='ASU', year='Junior').annotate(num=Count('list'))
-        list_tags = list(abc)
-        self.assertEqual(list_tags[0], 'Software Engineering')
+        response = c.post('/stats/analyze',{'year':'Junior'})
+        self.assertEqual(response.context['piechart'].local_data, [1])
 
 class IndexTest3(TestCase):
     def setUp(self):
@@ -103,12 +87,5 @@ class IndexTest3(TestCase):
         c = Client()
         test1 = User.objects.get(username='Test1')
         self.assertEqual(test1.username, 'Test1')
-        c.login(username='Test1', password='test1password')
-        abc = PDF.objects.filter(pdf_tags__contains=['Software Engineering'])
-        uni_list = []
-        for one_pdf in list(abc):
-            uni_list.append(one_pdf.university)
-
-        dic = Counter(uni_list)
-        print(dic)
-        self.assertEqual(dic, {'ASU': 2, 'NCSU': 2, 'OSU': 1, 'Harvard': 1, 'MIT': 1})
+        response = c.post('/stats/university', {'tag': 'Software Engineering'})
+        self.assertEqual(response.context['piechart'].local_data, [2,1,2,1,1])
