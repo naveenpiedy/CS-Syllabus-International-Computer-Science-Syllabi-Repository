@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'homeapp',
     'search',
     'stats',
+    'about_page',
     'jchart',
     'django.contrib.admin',
     'django.contrib.auth',

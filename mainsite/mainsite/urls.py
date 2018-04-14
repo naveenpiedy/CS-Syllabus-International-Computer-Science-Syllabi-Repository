@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^homeapp/', include('homeapp.urls')),
     url(r'^search/', include('search.urls')),
     url(r'^stats/', include('stats.urls')),
+    url(r'^about/', include('about_page.urls')),
     #url(r'^$', name='home'),
 ]
