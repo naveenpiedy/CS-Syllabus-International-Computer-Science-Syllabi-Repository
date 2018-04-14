@@ -1,10 +1,67 @@
-<!DOCTYPE html>
+{% load staticfiles %}
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Check</title>
-</head>
-<body>
+  <head>
+    <title>About Page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-</body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class="container">
+          <div class="row">
+              <div class="col-12 mt-5">
+                  <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                                <div class="col-md-4">
+                                        <img class="img-responsive img-thumbnail img-rounded inline-block" src="{% static "about_page/owl.png" %}" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                        <h4 class="card-title text-center display-4">The purpose of this website</h4>
+                                        <p class="card-text">The computer science faculty values free exchange of ideas, availability of open source software, open publications, exchange of pedagogical advances, etc. Yet, upon entering the web site of a particular institution understanding the graduation requirements is often a real challenge and tracking the syllabus of a specific course can be a daunting undertaking. The goal of this project is to create a national repository of computer science course syllabi to assist students in making good educational choices, instructors in sharing best practices, and education researchers in understanding the evolution of our field.</p>
+                                        <br>
+                                        <br>
+                                        <p class="card-text">We choose an Owl for a logo as owls as they are synonymous wih wisdom and knowledge throught history.</p>
+                                    </div>
+                        </div>
+
+
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+                <div class="container mt-4">
+                    <h5 class="display-4">Acknowledgement</h5>
+                    <p>We would like to thank our sponsor, Dr Gruia-Catalin Roman, University of New Mexico, for taking the time to be the sponsor for this project. His guidance and insights helped us bring this project to life. The whole project was an idea of his.</p>
+                    <p>We would also like to acknowledge Arizona State University and faculty for giving us an opportunity to work on this project.<p>
+                </div>
+                <div class="container mt-4 mb-4">
+                        <h5 class="display-4">Credit</h5>
+                        <p>We would like credit the following languages, libraries and frameworks that has helped in building this website.</p>
+                        <ul>
+                            <li>Django</li>
+                            <li>Django Web Framework</li>
+                            <li>Pdf Miner 3k</li>
+                            <li>Requests</li>
+                            <li>React Framework</li>
+                            <li>Bootstrap 4</li>
+                            <li>Django-Jchart</li>
+                        </ul>
+                    </div>
+
+
+            </div>
+          </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
 </html>
