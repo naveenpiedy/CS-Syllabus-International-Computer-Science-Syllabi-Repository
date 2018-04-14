@@ -22,7 +22,9 @@ class App extends React.Component {
 
     sendProps(){
         let subjectName = document.getElementById("subjectName").value;
-        let url = "http://127.0.0.1:8000/search/rest/?search="+subjectName+"&format=json";
+        let tag1 = document.getElementById('tag1').value;
+        let tag2 = document.getElementById('tag2').value;
+        let url = "http://127.0.0.1:8000/search/rest/?search="+subjectName+" "+tag1+" "+tag2+"&format=json";
         console.log(url);  
         let json = JSON.parse(httpGet(url));
 
@@ -46,6 +48,54 @@ class App extends React.Component {
                   <button type="button" class="btn btn-dark" onClick={this.sendProps}>Search</button>
               </div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+                    <label for="tag1">Tag</label>
+                        <select class="form-control" name="tag1" id="tag1">
+                        <option> </option>
+                        <option>General</option>
+                        <option>Computer Architecture</option>
+                        <option>Networks</option>
+                        <option>Programming languages</option>
+                        <option>Hardware</option>
+                        <option>Software Engineering</option>
+                        <option>Operating System</option>
+                        <option>Theory of Computation</option>
+                        <option>Information Systems</option>
+                        <option>Database Management</option>
+                        <option>Artificial Intelligence</option>
+                        <option>Computer Graphics</option>
+                        <option>Data Mining</option>
+                        <option>Computer Vision</option>
+                        <option>Information Assurance and Security</option>
+                        <option>Image processing</option>
+                        <option>Other</option>
+                        </select>
+            </div>
+            <div class="col-md-4">
+                    <label for="tag2">Tag</label>
+                        <select class="form-control" name="tag2" id="tag2">
+                        <option> </option>
+                        <option>General</option>
+                        <option>Computer Architecture</option>
+                        <option>Networks</option>
+                        <option>Programming languages</option>
+                        <option>Hardware</option>
+                        <option>Software Engineering</option>
+                        <option>Operating System</option>
+                        <option>Theory of Computation</option>
+                        <option>Information Systems</option>
+                        <option>Database Management</option>
+                        <option>Artificial Intelligence</option>
+                        <option>Computer Graphics</option>
+                        <option>Data Mining</option>
+                        <option>Computer Vision</option>
+                        <option>Information Assurance and Security</option>
+                        <option>Image processing</option>
+                        <option>Other</option>
+                        </select>
+            </div>
+           </div> 
           <div>
           </div>
           
