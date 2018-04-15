@@ -59,7 +59,26 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="tag">Enter Your Favourite Academic Area: </label>
-                    <input type="text" class="form-control" name="tag" id="tag" placeholder="">{% csrf_token %}
+                    <label for="tag">Tag </label>
+                        <select class="form-control" name="tag" id="tag">
+                        <option>General</option>
+                        <option>Computer Architecture</option>
+                        <option>Networks</option>
+                        <option>Programming languages</option>
+                        <option>Hardware</option>
+                        <option>Software Engineering</option>
+                        <option>Operating System</option>
+                        <option>Theory of Computation</option>
+                        <option>Information Systems</option>
+                        <option>Database Management</option>
+                        <option>Artificial Intelligence</option>
+                        <option>Computer Graphics</option>
+                        <option>Data Mining</option>
+                        <option>Computer Vision</option>
+                        <option>Information Assurance and Security</option>
+                        <option>Image processing</option>
+                        <option>Other</option>
+                        </select>
                 </div>
             </div>
         </div>
@@ -74,7 +93,7 @@
             <div class="col-md-9 offset-2">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h4 class="card-title">Title</h4>
+                        <h4 class="card-title">{{title}}</h4>
                         {{piechart.as_html}}
                     </div>
                 </div>
@@ -85,7 +104,7 @@
             <div class="col-md-9 offset-2">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h4 class="card-title">Title</h4>
+                        <h4 class="card-title">{{title}}</h4>
                         {{barchart.as_html}}
                     </div>
                 </div>

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'homeapp',
     'search',
     'stats',
+    'about_page',
     'jchart',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -131,6 +132,7 @@ EMAIL_PORT = 587
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
+    #os.path.join(BASE_DIR, 'about_page', 'templates', 'static', 'about_page'),
     os.path.join(BASE_DIR, 'search','templates','search','src','client','public'),
 ]
 

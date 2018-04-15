@@ -19,9 +19,10 @@ class PieChart(Chart):
     chart_type = 'doughnut'
     legend = {'position': 'bottom'}
 
-    def geting_local_data(self, labels, data):
+    def geting_local_data(self, labels, data, title):
         self.local_data = data
         self.local_labels = labels
+        self.title = title
 
     def get_labels(self, *args, **kwargs):
         return self.local_labels
@@ -55,9 +56,10 @@ class BarChart(Chart):
         'yAxes': [{'ticks': returnk(beginAtZero='true')}],
     }
 
-    def geting_local_data(self, labels, data):
+    def geting_local_data(self, labels, data, title):
         self.local_data = data
         self.local_labels = labels
+        self.title = title
 
     def get_labels(self, *args, **kwargs):
         return self.local_labels
@@ -72,7 +74,7 @@ class BarChart(Chart):
             colors.append(rgba(red, green, blue, 0.3))
 
         return [{
-            'label': "My Dataset",
+            'label': self.title,
             'data': self.local_data,
             'backgroundColor': colors
         }]
@@ -95,19 +97,20 @@ def index(request):
         sorted_dic = sorted(list_dic.items(), key=lambda x: x[1])[:15]
         sorted_values, sorted_data = zip(*sorted_dic)
         print(sorted_values, sorted_data)
-        pie.geting_local_data(list(sorted_values), list(sorted_data))
-        bar.geting_local_data(list(sorted_values), list(sorted_data))
+        pie.geting_local_data(list(sorted_values), list(sorted_data), 'Overall Stats')
+        bar.geting_local_data(list(sorted_values), list(sorted_data), 'Overall Stats')
     else:
-        pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
-        bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
+        pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()), 'Overall Stats')
+        bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()), 'Overall Stats')
     # print(list_dic)
-    return render(request, 'stats/overall.html', {'piechart': pie, 'barchart': bar}, c)
+    return render(request, 'stats/overall.html', {'piechart': pie, 'barchart': bar, 'title': 'Overall Stats'}, c)
 
 
 def analyze(request):
     c = {}
     c.update(csrf(request))
     print(request.POST)
+    title = ''
     search_lev = ''
     search_uni = ''
     if 'year' in request.POST:
@@ -128,6 +131,7 @@ def analyze(request):
 
     if 'University' in request.POST:
         search_uni = request.POST['University']
+    title = search_lev + ' in ' + search_uni
 
     if search_uni == '' and search_lev == 'None':
         abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).annotate(
@@ -154,13 +158,13 @@ def analyze(request):
         sorted_dic = sorted(list_dic.items(), key=lambda x: x[1])[:15]
         sorted_values, sorted_data = zip(*sorted_dic)
         print(sorted_values, sorted_data)
-        pie.geting_local_data(list(sorted_values), list(sorted_data))
-        bar.geting_local_data(list(sorted_values), list(sorted_data))
+        pie.geting_local_data(list(sorted_values), list(sorted_data), title)
+        bar.geting_local_data(list(sorted_values), list(sorted_data), title)
     else:
-        pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
-        bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()))
+        pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()), title)
+        bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()), title)
 
-    return render(request, 'stats/universityStats.html', {'piechart': pie, 'barchart': bar}, c)
+    return render(request, 'stats/universityStats.html', {'piechart': pie, 'barchart': bar, 'title': title}, c)
 
 
 def uni_analysis(request):
@@ -172,9 +176,11 @@ def uni_analysis(request):
 
     pie = PieChart()
     bar = BarChart()
+    title = ''
 
     if 'tag' in request.POST:
         spec_tag = request.POST['tag']
+        spec_tag = spec_tag.lower()
         print(spec_tag)
         abc = PDF.objects.filter(pdf_tags__contains=[spec_tag])
         uni_list = []
@@ -183,17 +189,17 @@ def uni_analysis(request):
 
         print(abc)
         dic = Counter(uni_list)
+        title = spec_tag + " distribution among universities"
 
     print(dic)
-
     if len(dic) > 20:
         sorted_dic = sorted(dic.items(), key=lambda x: x[1])[:15]
         sorted_values, sorted_data = zip(*sorted_dic)
         print(sorted_values, sorted_data)
-        pie.geting_local_data(list(sorted_values), list(sorted_data))
-        bar.geting_local_data(list(sorted_values), list(sorted_data))
+        pie.geting_local_data(list(sorted_values), list(sorted_data), title)
+        bar.geting_local_data(list(sorted_values), list(sorted_data), title)
     else:
-        pie.geting_local_data(list(dic.keys()), list(dic.values()))
-        bar.geting_local_data(list(dic.keys()), list(dic.values()))
+        pie.geting_local_data(list(dic.keys()), list(dic.values()), title)
+        bar.geting_local_data(list(dic.keys()), list(dic.values()), title)
 
-    return render(request, 'stats/uniAnalysis.html', {'piechart': pie, 'barchart': bar}, c)
+    return render(request, 'stats/uniAnalysis.html', {'piechart': pie, 'barchart': bar, 'title': title}, c)
