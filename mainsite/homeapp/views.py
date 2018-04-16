@@ -278,6 +278,7 @@ def edit_content(request, id):
             new_tag1 = request.POST['tag1']
             new_tag2 = request.POST['tag2']
             new_tag3 = request.POST['tag3']
+            new_year = request.POST['dropdown']
             new_list = [new_tag1, new_tag2, new_tag3]
 
             spec_pdf.pdf_desc = new_desc
@@ -286,6 +287,7 @@ def edit_content(request, id):
             spec_pdf.subjectName = new_sub
             spec_pdf.pdf_tags = new_list
             spec_pdf.pdf_topic = new_topic
+            spec_pdf.year = new_year
             spec_pdf.save()
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
