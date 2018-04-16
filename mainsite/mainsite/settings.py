@@ -126,6 +126,8 @@ EMAIL_HOST_USER = 'ser517softwarefactory@gmail.com'
 EMAIL_HOST_PASSWORD = 'ser517ser517'
 EMAIL_PORT = 587
 
+LOGOUT_REDIRECT_URL = '/login'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 

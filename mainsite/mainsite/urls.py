@@ -16,13 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-
+from django.conf import settings
+from homeapp import views as dviews
 
 urlpatterns = [
+    url(r'^$', dviews.index),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', include('loginapp.urls',namespace="loginapp")),
     url(r'^signup/', include('signupapp.urls', namespace="signupapp")),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^logout/$', auth_views.logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^admin/', admin.site.urls),
     url(r'^homeapp/', include('homeapp.urls')),
     url(r'^search/', include('search.urls')),
