@@ -68,7 +68,6 @@ export class Body extends React.Component{
                     var lister_in_progress = subjectName1.map((item, index)=>{
                         return (
                             <div class="card text-left mt-3 mb-2" onClick = {()=>this.expand(index)}>
-                                <img class="card-img-top" data-src="holder.js/100px180/" alt="" />
                                 <div class="card-body">
                                     <h4 class="card-title display-4">{item}</h4>
                                     <p class="card-text lead">University: {university1[index]}</p>

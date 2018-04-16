@@ -16,8 +16,10 @@ class App extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {json:"", subjectName:""};
         this.sendProps = this.sendProps.bind(this);
+        let url = "http://127.0.0.1:8000/search/rest/?search=&format=json";
+        let json = JSON.parse(httpGet(url));
+        this.state = {json: json, subjectName:""};
     }
 
     sendProps(){
