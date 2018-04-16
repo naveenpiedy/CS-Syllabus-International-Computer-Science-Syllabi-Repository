@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -29,7 +30,7 @@ def index(request):
                 login(request, user)
                 return redirect('/homeapp')
             else:
-                print("Debugging")
+                messages.error(request, "Wrong email and password combination")
     return render(request, 'loginapp/base.html', c)
 
 
