@@ -214,27 +214,34 @@ def edit_profile(request):
         ut.isprofessor = IsPro
         user.save()
         ut.save()
-        uuser = authenticate(username=user.username, password=request.POST['old_password'])
-        if uuser is not None:
-            if not request.POST['new_password'].isspace() and request.POST['new_password'] != '':
-                if request.POST['new_password'] == request.POST['retype_new_password']:
-                    print("Yeahhh")
-                    user.set_password(request.POST['new_password'])
-                    user.save()
-                    ut.save()
-                    return redirect('/homeapp')
-                    # updr.save()ate_session_auth_hash(request, user)
+        if request.POST['old_password'] != '' or request.POST['new_password'] != '' or request.POST['retype_new_password']!='':
+            uuser = authenticate(username=user.username, password=request.POST['old_password'])
+            if uuser is not None:
+                if not request.POST['new_password'].isspace() and request.POST['new_password'] != '':
+                    if request.POST['new_password'] == request.POST['retype_new_password']:
+                        print("Yeahhh")
+                        user.set_password(request.POST['new_password'])
+                        user.save()
+                        ut.save()
+                        return redirect('/homeapp')
+                        # updr.save()ate_session_auth_hash(request, user)
+                    else:
+                        messages.error(request, "New Password and Re typed password don't match")
                 else:
-                    messages.error(request, "New Password and Re typed password don't match")
+                    messages.error(request, "New Password is empty")
             else:
-                messages.error(request, "New Password is empty")
-        else:
-            messages.error(request, "Old Password is wrong")
+                messages.error(request, "Old Password is wrong")
 
+            return render(request, 'homeapp/editprofile.html', {
+                    'First_Name': First_Name, 'Last_Name': Last_Name,
+                    'University': University, 'checked': checked,
+                }, c)
+        else :
+            return redirect('/homeapp')
     return render(request, 'homeapp/editprofile.html', {
-            'First_Name': First_Name, 'Last_Name': Last_Name,
-            'University': University, 'checked': checked,
-        }, c)
+        'First_Name': First_Name, 'Last_Name': Last_Name,
+        'University': University, 'checked': checked,
+    }, c)
 
 
 def see_uploaded(request):
