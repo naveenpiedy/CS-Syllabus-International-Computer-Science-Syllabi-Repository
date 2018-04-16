@@ -132,15 +132,19 @@ def analyze(request):
     if 'University' in request.POST:
         search_uni = request.POST['University']
         search_uni=search_uni.lower()
-    title = search_lev + ' in ' + search_uni
+        title = search_lev + ' in ' + search_uni
+
 
     if search_uni == '' and search_lev == 'None':
+        title = ''
         abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).annotate(
             num=Count('list'))
     elif search_uni == '' and search_lev != 'None':
+        title = search_lev + ' in all universities'
         abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).filter(
             year=search_lev).annotate(num=Count('list'))
     elif search_uni != '' and search_lev == 'None':
+        title = 'All level in ' + search_uni
         abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).filter(
             university=search_uni).annotate(num=Count('list'))
     else:
