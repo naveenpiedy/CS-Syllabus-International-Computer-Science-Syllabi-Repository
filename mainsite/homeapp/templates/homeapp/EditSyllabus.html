@@ -101,45 +101,45 @@
             <div class="col-md-4">
                     <label for="tag1">Tag 1</label>
                         <select class="form-control" name="tag1" id="tag1">
-                        <option>General</option>
-                        <option>Computer Architecture</option>
-                        <option>Networks</option>
-                        <option>Programming languages</option>
-                        <option>Hardware</option>
-                        <option>Software Engineering</option>
-                        <option>Operating System</option>
-                        <option>Theory of Computation</option>
-                        <option>Information Systems</option>
-                        <option>Database Management</option>
-                        <option>Artificial Intelligence</option>
-                        <option>Computer Graphics</option>
-                        <option>Data Mining</option>
-                        <option>Computer Vision</option>
-                        <option>Information Assurance and Security</option>
-                        <option>Image processing</option>
-                        <option>Other</option>
+                        <option {% if tag1|lower == 'general' %} selected {% endif %}>General</option>
+                        <option {% if tag1|lower == "computer architecture" %} selected {% endif %}>Computer Architecture</option>
+                        <option {% if tag1|lower == 'networks' %} selected {% endif %}>Networks</option>
+                        <option {% if tag1|lower == 'programming languages' %} selected {% endif %}>Programming languages</option>
+                        <option {% if tag1|lower == 'hardware' %} selected {% endif %}>Hardware</option>
+                        <option {% if tag1|lower == 'software engineering' %} selected {% endif %}>Software Engineering</option>
+                        <option {% if tag1|lower == 'operating system' %} selected {% endif %}>Operating System</option>
+                        <option {% if tag1|lower == 'theory of computation' %} selected {% endif %}>Theory of Computation</option>
+                        <option {% if tag1|lower == 'information systems' %} selected {% endif %}>Information Systems</option>
+                        <option {% if tag1|lower == 'database management' %} selected {% endif %}>Database Management</option>
+                        <option {% if tag1|lower == 'artifical intelligence' %} selected {% endif %}>Artificial Intelligence</option>
+                        <option {% if tag1|lower == 'computer graphics' %} selected {% endif %}>Computer Graphics</option>
+                        <option {% if tag1|lower == 'data mining' %} selected {% endif %}>Data Mining</option>
+                        <option {% if tag1|lower == 'computer vision' %} selected {% endif %}>Computer Vision</option>
+                        <option {% if tag1|lower == 'information assurance and security' %} selected {% endif %}>Information Assurance and Security</option>
+                        <option {% if tag1|lower == 'image processing' %} selected {% endif %}>Image processing</option>
+                        <option {% if tag1|lower == 'other' %} selected {% endif %}>Other</option>
                         </select>
             </div>
             <div class="col-md-4">
-                    <label for="tag1">Tag 2</label>
-                        <select class="form-control" name="tag2" id="tag2">
-                        <option>General</option>
-                        <option>Computer Architecture</option>
-                        <option>Networks</option>
-                        <option>Programming languages</option>
-                        <option>Hardware</option>
-                        <option>Software Engineering</option>
-                        <option>Operating System</option>
-                        <option>Theory of Computation</option>
-                        <option>Information Systems</option>
-                        <option>Database Management</option>
-                        <option>Artificial Intelligence</option>
-                        <option>Computer Graphics</option>
-                        <option>Data Mining</option>
-                        <option>Computer Vision</option>
-                        <option>Information Assurance and Security</option>
-                        <option>Image processing</option>
-                        <option>Other</option>
+                    <label for="tag2">Tag 2</label>
+                         <select class="form-control" name="tag2" id="tag2">
+                        <option {% if tag2|lower == 'general' %} selected {% endif %}>General</option>
+                        <option {% if tag2|lower == "computer architecture" %} selected {% endif %}>Computer Architecture</option>
+                        <option {% if tag2|lower == 'networks' %} selected {% endif %}>Networks</option>
+                        <option {% if tag2|lower == 'programming languages' %} selected {% endif %}>Programming languages</option>
+                        <option {% if tag2|lower == 'hardware' %} selected {% endif %}>Hardware</option>
+                        <option {% if tag2|lower == 'software engineering' %} selected {% endif %}>Software Engineering</option>
+                        <option {% if tag2|lower == 'operating system' %} selected {% endif %}>Operating System</option>
+                        <option {% if tag2|lower == 'theory of computation' %} selected {% endif %}>Theory of Computation</option>
+                        <option {% if tag2|lower == 'information systems' %} selected {% endif %}>Information Systems</option>
+                        <option {% if tag2|lower == 'database management' %} selected {% endif %}>Database Management</option>
+                        <option {% if tag2|lower == 'artifical intelligence' %} selected {% endif %}>Artificial Intelligence</option>
+                        <option {% if tag2|lower == 'computer graphics' %} selected {% endif %}>Computer Graphics</option>
+                        <option {% if tag2|lower == 'data mining' %} selected {% endif %}>Data Mining</option>
+                        <option {% if tag2|lower == 'computer vision' %} selected {% endif %}>Computer Vision</option>
+                        <option {% if tag2|lower == 'information assurance and security' %} selected {% endif %}>Information Assurance and Security</option>
+                        <option {% if tag2|lower == 'image processing' %} selected {% endif %}>Image processing</option>
+                        <option {% if tag2|lower == 'other' %} selected {% endif %}>Other</option>
                         </select>
                 </div>
             <div class="col-md-4">
@@ -156,12 +156,12 @@
                 <div class="form-group">
                     <label for="sel1">Select year:</label>
                     <select class="form-control" name="dropdown" id="sel1">
-                        <option>Freshman</option>
-                        <option>Sophomore</option>
-                        <option>Junior</option>
-                        <option>Senior</option>
-                        <option>Masters</option>
-                        <option>Doctorate</option>
+                        <option {% if year|lower == 'freshman' %} selected {% endif %}>Freshman</option>
+                        <option {% if year|lower == 'sophomore' %} selected {% endif %}>Sophomore</option>
+                        <option {% if year|lower == 'junior' %} selected {% endif %}>Junior</option>
+                        <option {% if year|lower == 'senior' %} selected {% endif %}>Senior</option>
+                        <option {% if year|lower == 'masters' %} selected {% endif %}>Masters</option>
+                        <option {% if year|lower == 'doctorate' %} selected {% endif %}>Doctorate</option>
                     </select>
                 </div>
             </div>

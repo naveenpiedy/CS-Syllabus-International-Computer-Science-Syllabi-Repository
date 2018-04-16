@@ -289,10 +289,12 @@ def edit_content(request, id):
             spec_pdf.pdf_topic = new_topic
             spec_pdf.year = new_year
             spec_pdf.save()
+
+            print(new_tag1, new_tag2)
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
                 'Topics': new_topic,
-                'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3
+                'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3, 'year': new_year
             })
         else:
             tag1 = ''
@@ -305,10 +307,12 @@ def edit_content(request, id):
             if len(spec_pdf.pdf_tags) > 2:
                 tag3 = spec_pdf.pdf_tags[2]
 
+            print(tag1, tag2)
+
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name,
                 'university': spec_pdf.university, 'Topics': spec_pdf.pdf_topic,
-                'subjectname': spec_pdf.subjectName, 'tag1': tag1, 'tag2': tag2, 'tag3': tag3
+                'subjectname': spec_pdf.subjectName, 'tag1': tag1, 'tag2': tag2, 'tag3': tag3, 'year': spec_pdf.year
             })
 
     return render(request, 'homeapp/EditSyllabus.html', c)
