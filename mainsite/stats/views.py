@@ -131,6 +131,7 @@ def analyze(request):
 
     if 'University' in request.POST:
         search_uni = request.POST['University']
+        search_uni=search_uni.lower()
     title = search_lev + ' in ' + search_uni
 
     if search_uni == '' and search_lev == 'None':

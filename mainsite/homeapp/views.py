@@ -88,15 +88,11 @@ def index(request):
                     tag_obj3.tagName = k3.lower()
                     tag_obj3.save()
 
-            print('Prof_name: ' + prof_name)
-            print('Univ_name: ' + univ_name)
-            print('Subj_name: ' + subj_name)
-            print(total_tag)
             pdf_obj.pdf_tags = total_tag
             pdf_obj.pdfName = myfile.name
             pdf_obj.professor_name = prof_name
             pdf_obj.subjectName = subj_name
-            pdf_obj.university = univ_name
+            pdf_obj.university = univ_name.lower()
             pdf_obj.year = pdf_year
             pdf_obj.save()
             tag_group = pdf_obj.pdf_tags
