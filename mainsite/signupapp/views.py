@@ -16,54 +16,75 @@ from .tokens import account_activation_token
 def index(request):
     c = {}
     c.update(csrf(request))
+    flag = True
     if request.method == 'POST':
+        flag = True
         isprofessor=False
         username = request.POST['user_name']
-        if request.POST['pwd'] == request.POST['re_pwd']:
-            password = request.POST['pwd']
+        if not request.POST['pwd'].isspace() and request.POST['pwd'] != '':
+            if request.POST['pwd'] == request.POST['re_pwd']:
+                password = request.POST['pwd']
+            else:
+                messages.error(request, "Password's don't match.")
+                flag = False
         else:
-            raise Exception("Password doesn't match")
+            messages.error(request, "Password field cannot be blank")
+            flag = False
         if request.POST['email_id'][-4:] == '.edu':
             if request.POST['email_id'] == request.POST['re_email_id']:
                 email = request.POST['email_id']
                 users = User.objects.filter(email=email)
                 if users:
-                    return HttpResponse("Email already present")
+                    messages.error(request, "Email already in use")
             else:
-                raise Exception("Email ID doesn't matach")
+                flag = False
+                messages.error(request, "Email ID doesn't matach")
         else:
-            raise Exception("Only .edu accounts are allowed")
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        university = request.POST['university']
-        is_professor = request.POST['is_professor']
-        if is_professor=='checkedValue':
-            isprofessor=True
-        if "button_click" in request.POST:
+            flag = False
+            messages.error(request, "Only .edu accounts are allowed")
+        if not request.POST['first_name'].isspace() and request.POST['first_name'] != '':
+            first_name = request.POST['first_name']
+        else:
+            messages.error(request, "First Name cannot be blank")
+        if not request.POST['last_name'].isspace() and request.POST['last_name'] != '':
+            last_name = request.POST['last_name']
+        else:
+            messages.error(request, "Last Name cannot be blank")
+        if not request.POST['last_name'].isspace() and request.POST['last_name'] != '':
+            university = request.POST['university']
+        else:
+            messages.error(request, "University cannot be blank")
+        if 'is_professor' in request.POST:
+            is_professor = request.POST['is_professor']
+            if is_professor=='checkedValue':
+                isprofessor=True
+        if "button_click" in request.POST and flag:
             print(username, password)
-            user = User.objects.create_user(username= username, password= password, email=email)
-            # In Signupapp, I did some change and I committed
-            user.first_name = first_name
-            user.last_name = last_name
-            user.is_active = False
-            user.save()
-            usertable = UserTable()
-            usertable.university = university
-            usertable.isprofessor = isprofessor
-            usertable.user = user
-            usertable.save()
-        current_site = get_current_site(request)
-        message = render_to_string('signupapp/email.html', {
-            'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user),
-        })
-        mail_subject = 'Activate your account.'
-        to_email = email
-        email = EmailMessage(mail_subject, message, to=[to_email])
-        email.send()
-        return HttpResponse('Please confirm your email address to complete the registration')
+            try:
+                user = User.objects.create_user(username= username, password= password, email=email)
+                user.first_name = first_name
+                user.last_name = last_name
+                user.is_active = False
+                user.save()
+                usertable = UserTable()
+                usertable.university = university
+                usertable.isprofessor = isprofessor
+                usertable.user = user
+                usertable.save()
+                current_site = get_current_site(request)
+                message = render_to_string('signupapp/email.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+                mail_subject = 'Activate your account.'
+                to_email = email
+                email = EmailMessage(mail_subject, message, to=[to_email])
+                email.send()
+                return HttpResponse('Please confirm your email address to complete the registration')
+            except(Exception):
+                messages.error(request, "Username already exists")
     return render(request, 'signupapp/SER517Login.html', c)
 
 def activate(request, uidb64, token):
