@@ -1,5 +1,5 @@
 import os
-
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth import authenticate, update_session_auth_hash
@@ -212,21 +212,26 @@ def edit_profile(request):
         else:
             IsPro = False
         ut.isprofessor = IsPro
+        user.save()
+        ut.save()
         uuser = authenticate(username=user.username, password=request.POST['old_password'])
         if uuser is not None:
             if not request.POST['new_password'].isspace() and request.POST['new_password'] != '':
                 if request.POST['new_password'] == request.POST['retype_new_password']:
                     print("Yeahhh")
                     user.set_password(request.POST['new_password'])
+                    user.save()
+                    ut.save()
+                    return redirect('/homeapp')
                     # updr.save()ate_session_auth_hash(request, user)
+                else:
+                    messages.error(request, "New Password and Re typed password don't match")
+            else:
+                messages.error(request, "New Password is empty")
+        else:
+            messages.error(request, "Old Password is wrong")
 
-        user.save()
-        ut.save()
-
-        return redirect('/homeapp')
-
-    else:
-        return render(request, 'homeapp/editprofile.html', {
+    return render(request, 'homeapp/editprofile.html', {
             'First_Name': First_Name, 'Last_Name': Last_Name,
             'University': University, 'checked': checked,
         }, c)
