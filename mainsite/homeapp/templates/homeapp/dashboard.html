@@ -15,6 +15,7 @@
 
     <!--<link rel="stylesheet" type="text/css" href="../../../static/templates/css/main.css">-->
     <link rel="stylesheet" href="../../static/homeapp/css/main.css">
+    <link rel="shortcut icon" type="image/png" href="../../static/owl.png">
 
 </head>
 
@@ -128,7 +129,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="file_path">Path</label>
-                    <input type="file" class="form-control" name="file_path" id="file_path" aria-describedby="helpId"
+                    <input type="file" class="form-control" required="required" name="file_path" id="file_path" aria-describedby="helpId"
                            placeholder="">
                     <!--<small id="helpId" class="form-text text-muted">Help text</small>-->
                 </div>
@@ -138,21 +139,21 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="professor">Professor Name</label>
-                    <input type="text" class="form-control" name="professor" id="professor" aria-describedby="helpId"
+                    <input type="text" class="form-control" required="required" name="professor" id="professor" aria-describedby="helpId"
                            placeholder="Enter Here">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="university">University Name</label>
-                    <input type="text" class="form-control" name="university" id="university" aria-describedby="helpId"
+                    <input type="text" class="form-control" required="required" name="university" id="university" aria-describedby="helpId"
                            placeholder="Please enter the formal university name.">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="subjectname">Subject Name</label>
-                    <input type="text" class="form-control" name="subjectname" id="subjectname"
+                    <input type="text" required="required" class="form-control" name="subjectname" id="subjectname"
                            aria-describedby="helpId" placeholder="Enter Here">
                 </div>
             </div>
@@ -233,7 +234,7 @@
             </div>
         </div>
         <div class="col-md-12 text-center mt-5 mb-5">
-            <a class="btn btn-dark" href="/homeapp/uploaded" role="button">Edit Uploaded Syllabuses</a>
+            <a class="btn btn-dark" href="/homeapp/uploaded" role="button">View Uploaded Syllabi</a>
         </div>
     </div>
 
