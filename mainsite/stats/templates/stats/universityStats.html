@@ -14,6 +14,7 @@
 
     <!--<link rel="stylesheet" type="text/css" href="../../../static/templates/css/main.css">-->
     <link rel="stylesheet" href="../../static/stats/css-own/main.css">
+    <link rel="shortcut icon" type="image/png" href="../../static/owl.png">
 
 </head>
 <body>
@@ -54,10 +55,14 @@
 
 <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
     <div class="container mt-5">
-        <div class="row border-bottom">
+        <!--<div class="row border-bottom">
             <h1 class='display-1'>University Statistics</h1>
+        </div>-->
+        <div style="background:transparent !important;padding-bottom: 10px" class="jumbotron">
+            <h1 class="display-3">University Statistics</h1>
+            <hr class="my-2">
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4" style="padding-left: 32px">
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="University">Enter University: </label>
@@ -82,15 +87,19 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <button type="submit" value="button_click" name="button_click" class="btn btn-dark">{% csrf_token %}Look
-                    Up!!
+                <button type="submit" value="button_click" name="button_click" style="margin-left: 15px" class="btn btn-dark">{% csrf_token %}Look
+                    Up
                 </button>
             </div>
         </div>
     </div>
     <div class="container mt-5">
-        <div class="row border-bottom">
+        <!--<div class="row border-bottom">
             <h1 class='display-1'>Overall Statistics</h1>
+        </div>-->
+        <div style="background:transparent !important; padding-bottom: 10px; padding-top: 10px" class="jumbotron">
+            <h1 class="display-3">Overall Statistics</h1>
+            <hr class="my-2">
         </div>
         <div class="row mt-5 mb-5 text-center">
             <div class="col-md-9 offset-2">

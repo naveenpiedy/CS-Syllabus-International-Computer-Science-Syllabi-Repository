@@ -35,7 +35,8 @@
                 <a class="nav-link" href="../logout/">Logout</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" id="statsDropDown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle active" href="#" id="statsDropDown" role="button"
+                   data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">Statistics</a>
                 <div class="dropdown-menu" aria-labelledby="statsDropDown">
                     <a class="dropdown-item" href="../stats">Overall Statistics</a>
@@ -52,15 +53,16 @@
 <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
 
     <div class="container mt-5">
-        <div class="row border-bottom">
-            <h1 class='display-1'>University Analysis</h1>
+        <div style="background:transparent !important;padding-bottom: 10px" class="jumbotron">
+            <h1 class="display-3">University Analysis</h1>
+            <hr class="my-2">
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4" style="padding-left: 32px">
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="tag">Enter Your Favourite Academic Area: </label>
                     <label for="tag">Tag </label>
-                        <select class="form-control" name="tag" id="tag">
+                    <select class="form-control" name="tag" id="tag">
                         <option>General</option>
                         <option>Computer Architecture</option>
                         <option>Networks</option>
@@ -78,14 +80,15 @@
                         <option>Information Assurance and Security</option>
                         <option>Image processing</option>
                         <option>Other</option>
-                        </select>
+                    </select>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <button type="submit" value="button_click" name="button_click" class="btn btn-dark">{% csrf_token %}Look
-                    Up!!
+                <button type="submit" value="button_click" name="button_click" style="margin-left: 15px"
+                        class="btn btn-dark">{% csrf_token %}Look
+                    Up
                 </button>
             </div>
         </div>
