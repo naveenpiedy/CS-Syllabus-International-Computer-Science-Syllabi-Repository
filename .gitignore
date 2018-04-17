@@ -7,3 +7,11 @@ venv/
 mainsite/search/templates/search/node_modules
 
 mainsite/mainsite/keys.py
+
+mainsite/media
+
+mainsite/homeapp/migrations
+
+mainsite/signupapp/migrations
+
+mainsite/ALTER
