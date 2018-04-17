@@ -1,5 +1,5 @@
 import os
-
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth import authenticate, update_session_auth_hash
@@ -212,24 +212,36 @@ def edit_profile(request):
         else:
             IsPro = False
         ut.isprofessor = IsPro
-        uuser = authenticate(username=user.username, password=request.POST['old_password'])
-        if uuser is not None:
-            if not request.POST['new_password'].isspace() and request.POST['new_password'] != '':
-                if request.POST['new_password'] == request.POST['retype_new_password']:
-                    print("Yeahhh")
-                    user.set_password(request.POST['new_password'])
-                    # updr.save()ate_session_auth_hash(request, user)
-
         user.save()
         ut.save()
+        if request.POST['old_password'] != '' or request.POST['new_password'] != '' or request.POST['retype_new_password']!='':
+            uuser = authenticate(username=user.username, password=request.POST['old_password'])
+            if uuser is not None:
+                if not request.POST['new_password'].isspace() and request.POST['new_password'] != '':
+                    if request.POST['new_password'] == request.POST['retype_new_password']:
+                        print("Yeahhh")
+                        user.set_password(request.POST['new_password'])
+                        user.save()
+                        ut.save()
+                        return redirect('/homeapp')
+                        # updr.save()ate_session_auth_hash(request, user)
+                    else:
+                        messages.error(request, "New Password and Re typed password don't match")
+                else:
+                    messages.error(request, "New Password is empty")
+            else:
+                messages.error(request, "Old Password is wrong")
 
-        return redirect('/homeapp')
-
-    else:
-        return render(request, 'homeapp/editprofile.html', {
-            'First_Name': First_Name, 'Last_Name': Last_Name,
-            'University': University, 'checked': checked,
-        }, c)
+            return render(request, 'homeapp/editprofile.html', {
+                    'First_Name': First_Name, 'Last_Name': Last_Name,
+                    'University': University, 'checked': checked,
+                }, c)
+        else :
+            return redirect('/homeapp')
+    return render(request, 'homeapp/editprofile.html', {
+        'First_Name': First_Name, 'Last_Name': Last_Name,
+        'University': University, 'checked': checked,
+    }, c)
 
 
 def see_uploaded(request):
@@ -278,6 +290,7 @@ def edit_content(request, id):
             new_tag1 = request.POST['tag1']
             new_tag2 = request.POST['tag2']
             new_tag3 = request.POST['tag3']
+            new_year = request.POST['dropdown']
             new_list = [new_tag1, new_tag2, new_tag3]
 
             spec_pdf.pdf_desc = new_desc
@@ -286,11 +299,14 @@ def edit_content(request, id):
             spec_pdf.subjectName = new_sub
             spec_pdf.pdf_tags = new_list
             spec_pdf.pdf_topic = new_topic
+            spec_pdf.year = new_year
             spec_pdf.save()
+
+            print(new_tag1, new_tag2)
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
                 'Topics': new_topic,
-                'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3
+                'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3, 'year': new_year
             })
         else:
             tag1 = ''
@@ -303,10 +319,12 @@ def edit_content(request, id):
             if len(spec_pdf.pdf_tags) > 2:
                 tag3 = spec_pdf.pdf_tags[2]
 
+            print(tag1, tag2)
+
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': spec_pdf.pdf_desc, 'professor': spec_pdf.professor_name,
                 'university': spec_pdf.university, 'Topics': spec_pdf.pdf_topic,
-                'subjectname': spec_pdf.subjectName, 'tag1': tag1, 'tag2': tag2, 'tag3': tag3
+                'subjectname': spec_pdf.subjectName, 'tag1': tag1, 'tag2': tag2, 'tag3': tag3, 'year': spec_pdf.year
             })
 
     return render(request, 'homeapp/EditSyllabus.html', c)

@@ -47,23 +47,27 @@ def forget_password_step1(request):
     if request.method == 'POST' and "button_click" in request.POST:
         get_email = request.POST['email']
         users = User.objects.filter(email=get_email)
-        list_id = []
-        for user in users:
-            list_id.append(user.id)
-        max_id = max(list_id)
-        spec_user = User.objects.get(id=max_id)
-        print(type(spec_user))
-        current_site = get_current_site(request)
-        message = render_to_string('loginapp/email.html', {
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(spec_user.pk)),
-            'token': password_reset_token.make_token(user),
-        })
-        mail_subject = 'Reset your password.'
-        to_email = get_email
-        email_obj = EmailMessage(mail_subject, message, to=[to_email])
-        email_obj.send()
-        return HttpResponse('Please confirm your email address to complete the password reset')
+        if not users:
+            messages.error(request,'This email address is not registed')
+        else:
+            list_id = []
+            for user in users:
+                list_id.append(user.id)
+            max_id = max(list_id)
+            spec_user = User.objects.get(id=max_id)
+            current_site = get_current_site(request)
+            message = render_to_string('loginapp/email.html', {
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(spec_user.pk)),
+                'token': password_reset_token.make_token(spec_user),
+            })
+            mail_subject = 'CSSR Message: Reset your password.'
+            to_email = get_email
+            email_obj = EmailMessage(mail_subject, message, to=[to_email])
+            email_obj.send()
+            return HttpResponse('Please confirm your email address to complete the password reset')
+
+
     return render(request, 'loginapp/step1.html', c)
 
 

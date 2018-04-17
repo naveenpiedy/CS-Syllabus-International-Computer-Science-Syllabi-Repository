@@ -35,6 +35,7 @@ def index(request):
                 email = request.POST['email_id']
                 users = User.objects.filter(email=email)
                 if users:
+                    flag = False
                     messages.error(request, "Email already in use")
             else:
                 flag = False
