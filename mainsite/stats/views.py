@@ -85,7 +85,9 @@ def index(request):
     c.update(csrf(request))
     abc = PDF.objects.annotate(list=Func(F('pdf_tags'), function='unnest')).values_list('list', flat=True).annotate(
         num=Count('list'))
-
+    values = []
+    data = []
+    total_count = PDF.objects.all().count()
     list_tags = list(abc)
     list_dic = {}
     for i in range(0, len(list_tags), 2):
@@ -96,23 +98,27 @@ def index(request):
     if len(list_dic) > 20:
         sorted_dic = sorted(list_dic.items(), key=lambda x: x[1])[:15]
         sorted_values, sorted_data = zip(*sorted_dic)
-        print(sorted_values, sorted_data)
+        values, data = sorted_values, sorted_data
         pie.geting_local_data(list(sorted_values), list(sorted_data), 'Overall Stats')
         bar.geting_local_data(list(sorted_values), list(sorted_data), 'Overall Stats')
     else:
+        values, data = list(list_dic.keys()), list(list_dic.values())
         pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()), 'Overall Stats')
         bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()), 'Overall Stats')
     # print(list_dic)
-    return render(request, 'stats/overall.html', {'piechart': pie, 'barchart': bar, 'title': 'Overall Stats'}, c)
+
+    listas = zip(values, data)
+    return render(request, 'stats/overall.html', {'piechart': pie, 'barchart': bar, 'title': 'Overall Stats', 'total_count': total_count, 'listas':listas}, c)
 
 
 def analyze(request):
     c = {}
     c.update(csrf(request))
-    print(request.POST)
+    #print(request.POST)
     title = ''
     search_lev = ''
     search_uni = ''
+    total_count = PDF.objects.all().count()
     if 'year' in request.POST:
         if request.POST['year'] == 'Freshman':
             search_lev = 'Freshman'
@@ -131,6 +137,7 @@ def analyze(request):
 
     if 'University' in request.POST:
         search_uni = request.POST['University']
+        total_count = PDF.objects.filter(university=search_uni).count()
         search_uni=search_uni.lower()
         title = search_lev + ' in ' + search_uni
 
@@ -169,15 +176,17 @@ def analyze(request):
         pie.geting_local_data(list(list_dic.keys()), list(list_dic.values()), title)
         bar.geting_local_data(list(list_dic.keys()), list(list_dic.values()), title)
 
-    return render(request, 'stats/universityStats.html', {'piechart': pie, 'barchart': bar, 'title': title}, c)
+    return render(request, 'stats/universityStats.html', {'piechart': pie, 'barchart': bar, 'title': title, 'total_count': total_count}, c)
 
 
 def uni_analysis(request):
     c = {}
     c.update(csrf(request))
-    print(request.POST)
+    #print(request.POST)
+    total_count = 0
 
     dic={}
+    tagsend = ''
 
     pie = PieChart()
     bar = BarChart()
@@ -185,18 +194,24 @@ def uni_analysis(request):
 
     if 'tag' in request.POST:
         spec_tag = request.POST['tag']
-        spec_tag = spec_tag.lower()
-        print(spec_tag)
-        abc = PDF.objects.filter(pdf_tags__contains=[spec_tag])
-        uni_list = []
-        for one_pdf in list(abc):
-            uni_list.append(one_pdf.university)
+    else:
+        spec_tag ='General'
 
-        print(abc)
-        dic = Counter(uni_list)
-        title = spec_tag + " distribution among universities"
+    spec_tagu = spec_tag
+    spec_tag = spec_tag.lower()
+    #print(spec_tag)
+    abc = PDF.objects.filter(pdf_tags__contains=[spec_tag])
+    total_count = PDF.objects.filter(pdf_tags__contains=[spec_tag]).count()
+    uni_list = []
+    for one_pdf in list(abc):
+        uni_list.append(one_pdf.university)
 
-    print(dic)
+    #print(abc)
+    dic = Counter(uni_list)
+    title = spec_tagu + " distribution among universities"
+    tagsend = spec_tagu
+
+    #print(dic)
     if len(dic) > 20:
         sorted_dic = sorted(dic.items(), key=lambda x: x[1])[:15]
         sorted_values, sorted_data = zip(*sorted_dic)
@@ -207,4 +222,4 @@ def uni_analysis(request):
         pie.geting_local_data(list(dic.keys()), list(dic.values()), title)
         bar.geting_local_data(list(dic.keys()), list(dic.values()), title)
 
-    return render(request, 'stats/uniAnalysis.html', {'piechart': pie, 'barchart': bar, 'title': title}, c)
+    return render(request, 'stats/uniAnalysis.html', {'piechart': pie, 'barchart': bar, 'title': title, 'total_count': total_count, 'tag':tagsend }, c)

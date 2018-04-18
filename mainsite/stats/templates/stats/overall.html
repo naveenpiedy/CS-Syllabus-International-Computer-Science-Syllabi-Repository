@@ -66,6 +66,16 @@
             <h1 class="display-3">Overall Statistics</h1>
             <hr class="my-2">
         </div>
+    <div class="row text-center">
+        <p class="h4"> Total Number of Syllabi Uploaded = {{total_count}}</p>
+    </div>
+    <div class="row">
+        <ul class="list-inline">
+        {% for item in listas %}
+        <li class="list-inline-item">{{item.0}} : {{item.1}} ,</li>
+        {% endfor %}
+        </ul>
+    </div>
     <div class="row mt-5 mb-5 text-center">
         <div class="col-md-9 offset-2">
             <div class="card text-center">
