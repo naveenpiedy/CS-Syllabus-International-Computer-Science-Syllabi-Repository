@@ -48,7 +48,7 @@ export class Body extends React.Component{
         //console.log(this.props.professor);
         //console.log(this.props.university);
         this.expand = this.expand.bind(this);
-        this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:"", eTopics:"", eId:""};  
+        this.state = {eSubjectName:"", eProfessor:"", eUniversity:"", eTags:"", ePdfDes:"", eTopics:"", eId:"", ePdfname:""};  
     }
 
     
@@ -56,7 +56,7 @@ export class Body extends React.Component{
     expand(index){
         console.log("Clicked")
         var here= this.props.json.results[index];
-        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTopics:here.pdf_topic, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id});
+        this.setState({eSubjectName: here.subjectName, eProfessor: here.professor_name, eUniversity: here.university, eTopics:here.pdf_topic, eTags: tag_expander(here.pdf_tags), ePdfDes: here.pdf_desc, eId:here.id, ePdfname: here.pdfName});
         console.log(this.state.ePdfDes);
         expansion = true;
     }
@@ -116,7 +116,10 @@ export class Body extends React.Component{
             </div>
             <div class="row">
                 <p style={pStyle}>{this.state.eTopics}</p>
-            </div>    
+            </div>
+            <div class="text-center mb-5">
+            <a name="" id="" class="btn btn-dark" href={"/search/download/"+this.state.ePdfname} role="button">Download Orginal PDF</a>
+            </div>        
         </div>
         <div class='container'>
         <Disquis unique_id ={this.state.eId} teachers_name = {this.state.eProfessor} subjectName={this.state.eSubjectName} /></div>

@@ -7,4 +7,5 @@ from . import views
 urlpatterns = [
     path('searching', TemplateView.as_view(template_name="index.html")),
     url(r'rest\S*', views.Acc_Pdf.as_view()),
+    path('download/<str:filename>', views.downloadfile, name='downloadfile')
 ]
