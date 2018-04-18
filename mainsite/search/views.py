@@ -29,7 +29,10 @@ class Acc_Pdf(generics.ListCreateAPIView):
         return PDF.objects.filter(pdf_tags__contains= pdf_tag)
 
 def downloadfile(request, filename):
-    with open(os.path.join(settings.MEDIA_ROOT, filename), 'rb') as fh:
-        response = HttpResponse(fh.read(), content_type="application/pdf")
-        response['Content-Disposition'] = 'attachment; filename='+filename
-        return response
+    try:
+        with open(os.path.join(settings.MEDIA_ROOT, filename), 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/pdf")
+            response['Content-Disposition'] = 'attachment; filename='+filename
+            return response
+    except(Exception):
+        return HttpResponse("File not available.")
