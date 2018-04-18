@@ -80,6 +80,16 @@ export class Body extends React.Component{
                     return <div class="container mt-5 mb-5">
                         {lister_in_progress}
                     </div> 
+            } 
+            else{
+                return <div class= "container mt-5 mb-5">
+                    <div class="card text-left mt-3 mb-2">
+                                <div class="card-body">
+                                    <h4 class="card-title display-4">Zero results for your search</h4>
+                                    
+                                </div>
+                            </div>
+                </div>
             }
         }
         else{
