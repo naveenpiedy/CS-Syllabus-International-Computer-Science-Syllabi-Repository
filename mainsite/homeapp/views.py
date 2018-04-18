@@ -269,9 +269,10 @@ def see_uploaded(request):
 
 def edit_content(request, id):
     c = {}
-    print(id)
+    #print(id)
     c.update(csrf(request))
-    print(request.POST)
+    #print(request.POST)
+    total_tag= []
     if request.user.is_authenticated:
         user_name = request.user.username
         # pdfs = PDF.objects.filter(uploaders=user_name)
@@ -281,17 +282,23 @@ def edit_content(request, id):
         # max_id = max(list)
         spec_pdf = PDF.objects.get(uploaders=user_name, id=id)
         if request.method == 'POST' and request.POST['upload']:
-            print("_+_+_+_+_+_+_+_+_+_+")
+            #print("_+_+_+_+_+_+_+_+_+_+")
             new_desc = request.POST['Description']
             new_topic = request.POST['Topics']
             new_prof = request.POST['professor']
             new_univ = request.POST['university']
             new_sub = request.POST['subjectname']
-            new_tag1 = request.POST['tag1']
-            new_tag2 = request.POST['tag2']
-            new_tag3 = request.POST['tag3']
+            k1 = request.POST['tag1'].strip()
+            if k1 != '':
+                total_tag.append(k1)
+            k2 = request.POST['tag2'].strip()
+            if k2 !="":
+                total_tag.append(k2)
+            k3 = request.POST['tag3'].strip()
+            if k3 != "":
+                total_tag.append(k3)
             new_year = request.POST['dropdown']
-            new_list = [new_tag1, new_tag2, new_tag3]
+            new_list = total_tag
 
             spec_pdf.pdf_desc = new_desc
             spec_pdf.professor_name = new_prof
@@ -302,11 +309,11 @@ def edit_content(request, id):
             spec_pdf.year = new_year
             spec_pdf.save()
 
-            print(new_tag1, new_tag2)
+            #print(new_tag1, new_tag2)
             return render(request, 'homeapp/EditSyllabus.html', {
                 'Description': new_desc, 'professor': new_prof, 'university': new_univ, 'subjectname': new_sub,
                 'Topics': new_topic,
-                'tag1': new_tag1, 'tag2': new_tag2, 'tag3': new_tag3, 'year': new_year
+                'tag1': k1, 'tag2': k2, 'tag3': k3, 'year': new_year
             })
         else:
             tag1 = ''
