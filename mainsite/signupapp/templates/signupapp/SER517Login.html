@@ -27,12 +27,12 @@
 
 <body>
 {% for message in messages %}
-  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+<div class="alert {{ message.tags }} alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
     </button>
     {{ message }}
-  </div>
+</div>
 {% endfor %}
 <nav class="navbar navbar-expand-lg navbar-light navbar-style">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
@@ -50,13 +50,16 @@
             </li>
             {% block content %}
             {% if user.is_authenticated %}
-             <li class="nav-item"> <a class="nav-link" href="../logout/">Logout</a> </li>
+            <li class="nav-item"><a class="nav-link" href="../logout/">Logout</a></li>
             {% else %}
-             <li class="nav-item"> <a class="nav-link" href="../login/">Login</a> </li>
+            <li class="nav-item"><a class="nav-link" href="../login/">Login</a></li>
             {% endif %}
             {% endblock %}
             <li class="nav-item">
                 <a class="nav-link disabled" onclick="validation();" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../about">About</a>
             </li>
         </ul>
     </div>
@@ -104,7 +107,7 @@
                                         <input type="text" required="required" class="form-control" name="university"
                                                id="field9" aria-describedby="helpId" placeholder="">
                                         <small id="helptext" class="form-text text-muted">
-                                          Please use the full name of your University.
+                                            Please use the full name of your University.
                                         </small>
                                     </div>
                                 </div>
