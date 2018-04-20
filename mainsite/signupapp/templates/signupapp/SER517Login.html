@@ -48,13 +48,6 @@
                 <a class="nav-link" href="/search/searching">Search for Syllabi<span
                         class="sr-only">(current)</span></a>
             </li>
-            {% block content %}
-            {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="../logout/">Logout</a></li>
-            {% else %}
-            <li class="nav-item"><a class="nav-link" href="../login/">Login</a></li>
-            {% endif %}
-            {% endblock %}
             <li class="nav-item">
                 <a class="nav-link disabled" onclick="validation();" href="#">Dashboard</a>
             </li>
@@ -62,6 +55,13 @@
                 <a class="nav-link" href="../about">About</a>
             </li>
         </ul>
+        {% block content %}
+            {% if user.is_authenticated %}
+             <span class="navbar-text"> <a class="nav-link" href="../logout/">Logout</a> </span>
+            {% else %}
+             <span class="navbar-text"> <a class="nav-link" href="../login/">Login</a> </span>
+            {% endif %}
+            {% endblock %}
     </div>
 </nav>
 <form name="form" id="formentry" class="form-horizontal" enctype="multipart/form-data" role="form" method="POST">
