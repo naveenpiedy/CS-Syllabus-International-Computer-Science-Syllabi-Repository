@@ -55,12 +55,14 @@ def index(request):
             str = os.path.join(settings.MEDIA_ROOT, myfile.name)
             result = doPDF(str)
             final_result = extractInfo(result)
-            if final_result[0].find('topic')==0:
-                pdf_obj.pdf_topic = final_result[0]
-            if final_result[0].find('descr')==0 or final_result[0].find('summa')==0:
-                pdf_obj.pdf_desc = final_result[0]
-            if len(final_result) > 1:
-                pdf_obj.pdf_desc = final_result[1]
+            if len(final_result)!=0:
+                if final_result[0].find('topic') == 0:
+                    pdf_obj.pdf_topic = final_result[0]
+                if final_result[0].find('descr') == 0 or final_result[0].find('summa') == 0:
+                    pdf_obj.pdf_desc = final_result[0]
+                if len(final_result) > 1:
+                    pdf_obj.pdf_desc = final_result[1]
+
 
             prof_name = request.POST['professor']
             univ_name = request.POST['university']
